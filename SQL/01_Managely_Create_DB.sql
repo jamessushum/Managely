@@ -119,6 +119,7 @@ CREATE TABLE [UserProperty] (
   [Id] int PRIMARY KEY,
   [UserProfileId] int NOT NULL,
   [PropertyId] int NOT NULL,
+  [PropertyUnitNumber] nvarchar(255),
 
   CONSTRAINT [FK_UserProperty_User] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id]),
   CONSTRAINT [FK_UserProperty_Property] FOREIGN KEY ([PropertyId]) REFERENCES [Property] ([Id])
