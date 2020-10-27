@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Managely.Repositories;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Managely.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class UserTypeController : ControllerBase
+    public class PropertyController : ControllerBase
     {
-        private readonly IUserTypeRepository _userTypeRepository;
+        private readonly IPropertyRepository _propertyRepository;
 
-        public UserTypeController(IUserTypeRepository userTypeRepository)
+        public PropertyController(IPropertyRepository propertyRepository)
         {
-            _userTypeRepository = userTypeRepository;
+            _propertyRepository = propertyRepository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_userTypeRepository.GetAllUserTypes());
+            return Ok(_propertyRepository.GetAllProperties());
         }
     }
 }

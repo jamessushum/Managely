@@ -30,6 +30,7 @@ namespace Managely
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IUserTypeRepository, UserTypeRepository>();
+            services.AddTransient<IPropertyRepository, PropertyRepository>();
 
             services.AddControllers();
 
