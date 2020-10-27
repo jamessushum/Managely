@@ -1,12 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
+import { PropertyContext } from '../../providers/PropertyProvider';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './Register.css';
 
 const Register = () => {
   const { getUserTypes } = useContext(UserProfileContext);
+  const { getAllProperties } = useContext(PropertyContext);
 
   const [userTypes, setUserTypes] = useState([]);
+  const [properties, setProperties] = useState([]);
+  const [selectedPropertyIds, setSelectedPropertyIds] = useState([])
 
   const [userProfile, setUserProfile] = useState({
     FirstName: "",
@@ -30,6 +34,12 @@ const Register = () => {
     setUserTypes(res);
   }
 
+  const getProperties = async () => {
+    const res = await getAllProperties();
+    console.log(res);
+    setProperties(res);
+  }
+
   const handleFieldChange = (e) => {
     const stateToChange = { ...userProfile };
     stateToChange[e.target.id] = e.target.value;
@@ -51,8 +61,20 @@ const Register = () => {
     setIsImageLoading(false)
   }
 
+  const loadProperties = userProfile.UserTypeId === "2" ? properties.map(property => {
+    return (
+      <FormGroup check key={property.id}>
+        <Label check>
+          <Input type="checkbox" value={property.id} />{''}
+          {property.name}
+        </Label>
+      </FormGroup>
+    )
+  }) : null
+
   useEffect(() => {
     getAllUserTypes();
+    getProperties();
   }, [])
 
   return (
@@ -93,10 +115,8 @@ const Register = () => {
           <Label for="ImageLocation">Upload Image <small>(optional)</small></Label>
           <Input type="file" id="ImageLocation" onChange={handleImageField} />
         </FormGroup>
-        {userProfile.UserTypeId === "2"
-          ? <p>Select Property</p>
-          : null
-        }
+        {userProfile.UserTypeId === "2" ? <h6>Select Property</h6> : null}
+        {loadProperties}
       </Form>
     </div>
   )

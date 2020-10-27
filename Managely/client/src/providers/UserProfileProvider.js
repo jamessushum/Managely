@@ -59,7 +59,7 @@ export function UserProfileProvider(props) {
   };
 
   return (
-    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, getUserTypes }}>
+    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, getUserTypes, getToken }}>
       {isFirebaseReady
         ? props.children
         : <Spinner className="app-spinner dark" />}
