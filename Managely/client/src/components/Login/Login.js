@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './Login.css';
 
@@ -41,6 +41,11 @@ const Login = () => {
           <Input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} />
         </FormGroup>
         <Button onClick={loginSubmit}>Sign In</Button>
+        <div>
+          <em>
+            Not registered? <Link to="register">Register</Link>
+          </em>
+        </div>
       </Form>
     </div>
   )

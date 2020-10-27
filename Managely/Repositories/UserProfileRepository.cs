@@ -73,5 +73,33 @@ namespace Managely.Repositories
                 }
             }
         }
+
+        public void Add(UserProfile userProfile)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO
+                                        UserProfile (FirebaseUserId, FirstName, LastName, Email, Company, ImageLocation, CreateDateTime, IsActive, UserTypeId)
+                                        OUTPUT INSERTED.Id
+                                        VALUES (@FirebaseUserId, @FirstName, @LastName, @Email, @Company, @ImageLocation, @CreateDateTime, @IsActive, @UserTypeId)";
+
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
+                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "@Company", userProfile.Company);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@IsActive", userProfile.IsActive);
+                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
+
+                    userProfile.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }

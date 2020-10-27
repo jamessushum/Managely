@@ -29,6 +29,9 @@ namespace Managely
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IUserTypeRepository, UserTypeRepository>();
+            services.AddTransient<IPropertyRepository, PropertyRepository>();
+            services.AddTransient<IUserPropertyRepository, UserPropertyRepository>();
 
             services.AddControllers();
 

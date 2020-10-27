@@ -1,0 +1,16 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+}
+
+.register-form {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-top: 3em;
+  width: 550px;
+  padding: 1.5em;
+}
+
+.register-submitBtn {
+  margin-top: 2.5em;
+}
