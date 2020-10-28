@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Managely.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PropertyController : ControllerBase

@@ -60,15 +60,23 @@ export function UserProfileProvider(props) {
       }).then(resp => resp.json()));
   };
 
-  const getUserTypes = () => {
-    return getToken().then((token) =>
-      fetch(`${userTypeApiUrl}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(resp => resp.json()));
-  };
+  // const getUserTypes = () => {
+  //   return getToken().then((token) =>
+  //     fetch(`${userTypeApiUrl}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     }).then(resp => resp.json()));
+  // };
+
+  const getUserTypes = async () => {
+    const res = await fetch(userTypeApiUrl, {
+      method: "GET"
+    });
+    const val = await res.json();
+    return val;
+  }
 
   const saveUser = (userProfile) => {
     return getToken().then((token) =>

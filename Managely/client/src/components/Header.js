@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar color="secondary" dark fixed="top" expand="lg">
+      <Navbar color="secondary" dark expand="lg">
         <NavbarBrand tag={RRNavLink} to="/">Managely</NavbarBrand>
         <NavbarToggler className="font-weight-bold bg-primary text-white rounded" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
