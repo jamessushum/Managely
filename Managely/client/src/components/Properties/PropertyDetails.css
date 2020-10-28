@@ -1,0 +1,26 @@
+.propertyDetails-main-container {
+  height: 100vh;
+}
+
+.propertyDetails-top-container {
+  height: 50vh;
+  border: 1px solid red;
+  display: flex;
+}
+
+.propertyDetails-bottom-container {
+  height: 50vh;
+  border: 1px solid blue;
+}
+
+.propertyDetails-details-container {
+  width: 50vw;
+  height: 50vh;
+  border: 1px solid green;
+}
+
+.propertyDetails-tenants-container {
+  width: 50vw;
+  height: 50vh;
+  border: 1px solid orange;
+}

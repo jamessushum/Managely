@@ -1,9 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './PropertyCard.css'
 import { FaBuilding } from 'react-icons/fa';
 import { Button } from 'reactstrap';
 
 const PropertyCard = ({ property }) => {
+  const history = useHistory();
 
   return (
     <>
@@ -14,7 +16,7 @@ const PropertyCard = ({ property }) => {
         <td>{property.name}</td>
         <td>{property.address}</td>
         <td>{property.propertyType.type}</td>
-        <td><Button color="info">Details</Button></td>
+        <td><Button color="info" onClick={() => history.push(`/properties/details/${property.id}`)}>Details</Button></td>
       </tr>
     </>
   )
