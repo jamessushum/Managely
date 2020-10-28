@@ -66,7 +66,9 @@ namespace Managely.Repositories
 	                                        LEFT JOIN UserProfile u ON up.UserProfileId = u.Id
 	                                        LEFT JOIN Property p ON up.PropertyId = p.Id
                                         WHERE
-	                                        up.PropertyId = @propertyId";
+	                                        up.PropertyId = @propertyId
+                                        ORDER BY
+	                                        u.CreateDateTime DESC";
 
                     DbUtils.AddParameter(cmd, "@propertyId", propertyId);
 
