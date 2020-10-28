@@ -25,5 +25,19 @@ namespace Managely.Controllers
         {
             return Ok(_propertyRepository.GetAllProperties());
         }
+
+        [Authorize]
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var property = _propertyRepository.GetPropertyById(id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(property);
+        }
     }
 }
