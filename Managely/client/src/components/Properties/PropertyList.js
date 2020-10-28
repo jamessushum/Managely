@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropertyCard from './PropertyCard';
 import { PropertyContext } from '../../providers/PropertyProvider';
 import './PropertyList.css'
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 
 const PropertyList = () => {
   const { getAllProperties } = useContext(PropertyContext);
@@ -21,6 +21,9 @@ const PropertyList = () => {
 
   return (
     <>
+      <div className="propertyList-btn-container">
+        <Button color="success">Add Property</Button>
+      </div>
       <Table className="propertyList-table">
         <thead>
           <tr>
