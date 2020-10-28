@@ -8,12 +8,8 @@ export function PropertyProvider(props) {
   const { getToken } = useContext(UserProfileContext);
 
   const getAllProperties = async () => {
-    const token = await getToken();
     const res = await fetch(propertyApiUrl, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      method: "GET"
     });
     const value = await res.json();
     return value;

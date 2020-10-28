@@ -12,6 +12,7 @@ export function UserProfileProvider(props) {
 
   const userProfile = sessionStorage.getItem('userProfile');
   const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
+  const [isPropertyManager, setIsPropertyManager] = useState(userProfile != null && JSON.parse(userProfile).userTypeId === 1);
 
   const [isFirebaseReady, setIsFirebaseReady] = useState(false);
   useEffect(() => {
@@ -26,6 +27,7 @@ export function UserProfileProvider(props) {
       .then((userProfile) => {
         sessionStorage.setItem("userProfile", JSON.stringify(userProfile));
         setIsLoggedIn(true);
+        setIsPropertyManager(userProfile.userTypeId === 1)
       });
   };
 
@@ -58,15 +60,23 @@ export function UserProfileProvider(props) {
       }).then(resp => resp.json()));
   };
 
-  const getUserTypes = () => {
-    return getToken().then((token) =>
-      fetch(`${userTypeApiUrl}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(resp => resp.json()));
-  };
+  // const getUserTypes = () => {
+  //   return getToken().then((token) =>
+  //     fetch(`${userTypeApiUrl}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     }).then(resp => resp.json()));
+  // };
+
+  const getUserTypes = async () => {
+    const res = await fetch(userTypeApiUrl, {
+      method: "GET"
+    });
+    const val = await res.json();
+    return val;
+  }
 
   const saveUser = (userProfile) => {
     return getToken().then((token) =>
@@ -98,7 +108,7 @@ export function UserProfileProvider(props) {
   }
 
   return (
-    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, getUserTypes, getToken, register, createUserProperty }}>
+    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, getUserTypes, getToken, register, createUserProperty, isPropertyManager }}>
       {isFirebaseReady
         ? props.children
         : <Spinner className="app-spinner dark" />}
