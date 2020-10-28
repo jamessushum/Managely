@@ -33,7 +33,7 @@ const Header = () => {
             {isLoggedIn && isPropertyManager &&
               <>
                 <NavItem className="mx-0 mx-lg-1">
-                  <NavLink tag={RRNavLink} to="">Properties</NavLink>
+                  <NavLink tag={RRNavLink} to="/properties">Properties</NavLink>
                 </NavItem>
                 <NavItem className="mx-0 mx-lg-1">
                   <NavLink tag={RRNavLink} to="">Work Orders</NavLink>

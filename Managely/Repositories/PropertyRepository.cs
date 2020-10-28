@@ -31,7 +31,11 @@ namespace Managely.Repositories
 	                                        pt.Type AS PropertyType
                                         FROM
 	                                        Property p
-	                                        LEFT JOIN PropertyType pt ON p.PropertyTypeId = pt.Id";
+	                                        LEFT JOIN PropertyType pt ON p.PropertyTypeId = pt.Id
+                                        WHERE
+	                                        p.IsActive = 1
+                                        ORDER BY
+	                                        p.Name ASC";
 
                     var reader = cmd.ExecuteReader();
 
