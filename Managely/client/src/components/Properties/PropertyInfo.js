@@ -5,7 +5,7 @@ import DefaultImage from './Img/default-property-image.jpg'
 const PropertyInfo = ({ property }) => {
 
   return (
-    <div className="propertyInfo-container p-3">
+    <div className="propertyInfo-container">
       <Card className="mb-3">
         <div className="row no-gutters">
           <div className="propertyInfo-img-container col-md-4">

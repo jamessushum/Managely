@@ -1,17 +1,19 @@
 import React from 'react';
+import { FaEye } from "react-icons/fa";
 
 const PropertyTenantList = ({ tenants }) => {
 
   return (
-    <div>
-      <ul className="list-group mb-4">
-        {tenants.map(tenant => (
-          <li key={tenant.userProfile.id} className="list-group-item">
-            {tenant.userProfile.fullName}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {tenants.map(tenant => (
+        <tr key={tenant.userProfile.id}>
+          <td>{tenant.userProfile.fullName}</td>
+          <td>{tenant.userProfile.email}</td>
+          {tenant.propertyUnitNumber === null ? <td>Not yet assigned</td> : <td>{tenant.propertyUnitNumber}</td>}
+          <td><FaEye /></td>
+        </tr>
+      ))}
+    </>
   )
 }
 
