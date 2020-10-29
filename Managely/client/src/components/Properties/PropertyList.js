@@ -11,7 +11,6 @@ const PropertyList = () => {
 
   const getActiveProperties = async () => {
     const res = await getAllProperties();
-    console.log(res);
     setActiveProperties(res);
   }
 

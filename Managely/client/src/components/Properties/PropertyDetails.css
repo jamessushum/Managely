@@ -1,0 +1,36 @@
+.propertyDetails-main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.last-row {
+  grid-column: 1 / 3;
+}
+
+.propertyDetails-info {
+  width: 49vw;
+  height: 50vh;
+  /* border: 1px solid red; */
+  text-align: center;
+  overflow: auto;
+  padding: 0.5em;
+}
+
+.propertyDetails-tenants {
+  width: 50vw;
+  height: 50vh;
+  /* border: 1px solid blue; */
+  overflow: auto;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.propertyDetails-outstanding {
+  border: 1px solid green;
+  height: 25vh;
+}
+
+.propertyDetails-completed {
+  border: 1px solid purple;
+  height: 25vh;
+}

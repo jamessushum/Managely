@@ -7,6 +7,7 @@ import { PropertyProvider } from '../providers/PropertyProvider';
 import PropertyManagerDash from './Dashboard/PropertyManagerDash';
 import TenantDash from './Dashboard/TenantDash';
 import PropertyList from './Properties/PropertyList';
+import PropertyDetails from './Properties/PropertyDetails';
 
 const ApplicationViews = () => {
   const propertyManagerViews = [
@@ -22,6 +23,13 @@ const ApplicationViews = () => {
       provider: PropertyProvider,
       component: withRouter(PropertyList),
       path: "/properties",
+      to: "/login"
+    },
+    {
+      name: "Property Details",
+      provider: PropertyProvider,
+      component: withRouter(PropertyDetails),
+      path: "/properties/details/:id",
       to: "/login"
     }
   ];

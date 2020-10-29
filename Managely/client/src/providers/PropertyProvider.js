@@ -5,6 +5,8 @@ export const PropertyContext = createContext();
 
 export function PropertyProvider(props) {
   const propertyApiUrl = '/api/property';
+  const userPropertyApiUrl = '/api/userproperty';
+
   const { getToken } = useContext(UserProfileContext);
 
   const getAllProperties = async () => {
@@ -15,8 +17,32 @@ export function PropertyProvider(props) {
     return value;
   }
 
+  const getPropertyDetails = async (propertyId) => {
+    const token = await getToken();
+    const res = await fetch(`${propertyApiUrl}/${propertyId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
+  const getPropertyTenants = async (propertyId) => {
+    const token = await getToken();
+    const res = await fetch(`${userPropertyApiUrl}/${propertyId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <PropertyContext.Provider value={{ getAllProperties }}>
+    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants }}>
       {props.children}
     </PropertyContext.Provider>
   )

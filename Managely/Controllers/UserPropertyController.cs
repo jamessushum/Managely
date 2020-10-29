@@ -39,5 +39,18 @@ namespace Managely.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("{propertyId}")]
+        public IActionResult Get(int propertyId)
+        {
+            var tenants = _userPropertyRepository.GetPropertyTenants(propertyId);
+
+            if (tenants.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(tenants);
+        }
     }
 }
