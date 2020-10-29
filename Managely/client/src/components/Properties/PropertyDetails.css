@@ -1,29 +1,43 @@
 .propertyDetails-main-container {
-  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.propertyDetails-top-container {
+.child {
+  display: flex;
+  text-align: center;
+}
+
+.last-row {
+  grid-column: 1 / 3;
+}
+
+.propertyDetails-info {
+  width: 50vw;
   height: 50vh;
   border: 1px solid red;
-  display: flex;
 }
 
-.propertyDetails-bottom-container {
+.propertyDetails-tenants {
+  width: 50vw;
   height: 50vh;
   border: 1px solid blue;
 }
 
-.propertyDetails-details-container {
-  width: 50vw;
-  height: 50vh;
+.propertyDetails-outstanding {
   border: 1px solid green;
-  padding: 1em;
+  height: 25vh;
 }
 
-.propertyDetails-tenants-container {
-  width: 50vw;
-  height: 50vh;
-  border: 1px solid orange;
+.propertyDetails-completed {
+  border: 1px solid purple;
+  height: 25vh;
+}
+
+/* Property Info Component - Begins */
+
+.propertyInfo-container {
+  overflow: auto;
 }
 
 .propertyInfo-icon {
@@ -32,6 +46,4 @@
   border: 1px solid green;
 }
 
-.propertyInfo-img-container {
-  /* border: 1px solid red; */
-}
+/* Property Info Component - Ends */

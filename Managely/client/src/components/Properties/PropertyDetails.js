@@ -6,19 +6,22 @@ import './PropertyDetails.css';
 const PropertyDetails = ({ ...props }) => {
   const propertyId = props.match.params.id;
 
-  const { getPropertyDetails } = useContext(PropertyContext);
+  const { getPropertyDetails, getPropertyTenants } = useContext(PropertyContext);
 
   const [details, setDetails] = useState({
+    id: "",
     name: "",
     address: "",
     imageLocation: "",
     type: "",
   });
 
+  const [propertyTenants, setPropertyTenants] = useState([]);
+
   const propertyDetails = async () => {
     const res = await getPropertyDetails(propertyId);
-    console.log(res);
     setDetails({
+      id: res.id,
       name: res.name,
       address: res.address,
       imageLocation: res.imageLocation,
@@ -26,22 +29,30 @@ const PropertyDetails = ({ ...props }) => {
     });
   }
 
+  const getAllPropertyTenants = async () => {
+    const res = await getPropertyTenants(propertyId);
+    console.log(res);
+    setPropertyTenants(res);
+  }
+
   useEffect(() => {
     propertyDetails();
+    getAllPropertyTenants();
   }, [])
 
   return (
     <div className="propertyDetails-main-container">
-      <div className="propertyDetails-top-container">
-        <div className="propertyDetails-details-container">
-          <PropertyInfo property={details} />
-        </div>
-        <div className="propertyDetails-tenants-container">
-          Tenants list
-        </div>
+      <div className="propertyDetails-info child">
+        <PropertyInfo property={details} />
       </div>
-      <div className="propertyDetails-bottom-container">
-
+      <div className="propertyDetails-tenants child">
+        tenants list
+      </div>
+      <div className="propertyDetails-outstanding child last-row">
+        outstanding work orders
+      </div>
+      <div className="propertyDetails-completed child last-row">
+        completed work orders
       </div>
     </div>
   )
