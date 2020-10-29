@@ -17,10 +17,21 @@
   width: 50vw;
   height: 50vh;
   border: 1px solid green;
+  padding: 1em;
 }
 
 .propertyDetails-tenants-container {
   width: 50vw;
   height: 50vh;
   border: 1px solid orange;
+}
+
+.propertyInfo-icon {
+  width: 100%;
+  height: 100%;
+  border: 1px solid green;
+}
+
+.propertyInfo-img-container {
+  /* border: 1px solid red; */
 }

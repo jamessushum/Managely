@@ -11,7 +11,7 @@ const PropertyCard = ({ property }) => {
     <>
       <tr>
         <th scope="row" className="property-row-img-container">
-          {property.imageLocation === null || property.imageLocation === "" ? <FaBuilding className="property-row-image" /> : <img src={property.imageLocation} alt="property-img" />}
+          {property.imageLocation === null || property.imageLocation === "" ? <FaBuilding className="property-row-image" /> : <img src={property.imageLocation} alt="property-img" className="property-card-image" />}
         </th>
         <td>{property.name}</td>
         <td>{property.address}</td>
