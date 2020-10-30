@@ -8,6 +8,7 @@ import PropertyManagerDash from './Dashboard/PropertyManagerDash';
 import TenantDash from './Dashboard/TenantDash';
 import PropertyList from './Properties/PropertyList';
 import PropertyDetails from './Properties/PropertyDetails';
+import WorkOrderDetails from './WorkOrder/WorkOrderDetails';
 
 const ApplicationViews = () => {
   const propertyManagerViews = [
@@ -30,6 +31,13 @@ const ApplicationViews = () => {
       provider: PropertyProvider,
       component: withRouter(PropertyDetails),
       path: "/properties/details/:id",
+      to: "/login"
+    },
+    {
+      name: "WorkOrder Details",
+      provider: PropertyProvider,
+      component: withRouter(WorkOrderDetails),
+      path: "/workorder/details/:id",
       to: "/login"
     }
   ];
