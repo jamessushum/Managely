@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { PropertyContext } from '../../providers/PropertyProvider';
 import PropertyInfo from './PropertyInfo';
 import PropertyTenantList from './PropertyTenantList';
+import PropertyOpenWorkOrders from './PropertyOpenWorkOrders';
 import Pagination from '../../components/Pagination/Pagination';
 import './PropertyDetails.css';
 import { Table } from 'reactstrap';
@@ -9,7 +10,7 @@ import { Table } from 'reactstrap';
 const PropertyDetails = ({ ...props }) => {
   const propertyId = props.match.params.id;
 
-  const { getPropertyDetails, getPropertyTenants } = useContext(PropertyContext);
+  const { getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders } = useContext(PropertyContext);
 
   // State for property info component
   const [details, setDetails] = useState({
@@ -23,9 +24,16 @@ const PropertyDetails = ({ ...props }) => {
   // State for property tenants component
   const [propertyTenants, setPropertyTenants] = useState([]);
 
-  // State for pagination
+  // State for tenant list pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4)
+
+  // State for open work orders list pagination
+  const [currentPageOpenWO, setcurrentPageOpenWO] = useState(1);
+  const [itemsPerPageOpenWO] = useState(1);
+
+  // State for property open work orders
+  const [openWorkOrders, setOpenWorkOrders] = useState([]);
 
   const propertyDetails = async () => {
     const res = await getPropertyDetails(propertyId);
@@ -43,9 +51,16 @@ const PropertyDetails = ({ ...props }) => {
     setPropertyTenants(res);
   }
 
+  const getOpenWorkOrders = async () => {
+    const res = await getPropertyOpenWorkOrders(propertyId);
+    console.log(res);
+    setOpenWorkOrders(res);
+  }
+
   useEffect(() => {
     propertyDetails();
     getAllPropertyTenants();
+    getOpenWorkOrders();
   }, [])
 
   // Get current tenants - for pagination
@@ -53,8 +68,16 @@ const PropertyDetails = ({ ...props }) => {
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
   const currentTenants = propertyTenants.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Change page - for pagination
+  // Get current open work orders - for pagination
+  const indexOfLastPostOpenWO = currentPageOpenWO * itemsPerPageOpenWO;
+  const indexOfFirstPostOpenWO = indexOfLastPostOpenWO - itemsPerPageOpenWO;
+  const currentOpenWorkOrders = openWorkOrders.slice(indexOfFirstPostOpenWO, indexOfLastPostOpenWO);
+
+  // Change page - for tenant list pagination
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Change page - for open work orders list pagination
+  const paginateOpenWO = (pageNumber => setcurrentPageOpenWO(pageNumber));
 
   return (
     <div className="propertyDetails-main-container">
@@ -80,7 +103,23 @@ const PropertyDetails = ({ ...props }) => {
         <Pagination itemsPerPage={itemsPerPage} totalItems={propertyTenants.length} paginate={paginate} />
       </div>
       <div className="propertyDetails-outstanding last-row">
-        outstanding work orders
+        <h4>Open Work Orders</h4>
+        <Table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Status</th>
+              <th>Severity</th>
+              <th>Requested By</th>
+              <th>Date Created</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <PropertyOpenWorkOrders workOrders={currentOpenWorkOrders} />
+          </tbody>
+        </Table>
+        <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} />
       </div>
       <div className="propertyDetails-completed last-row">
         completed work orders
