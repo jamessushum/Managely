@@ -8,5 +8,7 @@ namespace Managely.Repositories
         List<WorkOrder> GetOpenWorkOrders(int propertyId);
 
         List<WorkOrder> GetCompletedWorkOrders(int propertyId);
+
+        public WorkOrder GetById(int workOrderId);
     }
 }
