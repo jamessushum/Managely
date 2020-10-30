@@ -26,11 +26,17 @@
 }
 
 .propertyDetails-outstanding {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   height: 25vh;
+  text-align: center;
+  overflow: auto;
+  padding: 0.5em;
 }
 
 .propertyDetails-completed {
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   height: 25vh;
+  text-align: center;
+  overflow: auto;
+  padding: 0.5em;
 }

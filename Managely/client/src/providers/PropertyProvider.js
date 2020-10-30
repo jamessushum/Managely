@@ -6,6 +6,7 @@ export const PropertyContext = createContext();
 export function PropertyProvider(props) {
   const propertyApiUrl = '/api/property';
   const userPropertyApiUrl = '/api/userproperty';
+  const workOrderApiUrl = '/api/workorder';
 
   const { getToken } = useContext(UserProfileContext);
 
@@ -41,8 +42,32 @@ export function PropertyProvider(props) {
     return val;
   }
 
+  const getPropertyOpenWorkOrders = async (propertyId) => {
+    const token = await getToken();
+    const res = await fetch(`${workOrderApiUrl}/${propertyId}/open`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
+  const getPropertyCompletedWorkOrders = async (propertyId) => {
+    const token = await getToken();
+    const res = await fetch(`${workOrderApiUrl}/${propertyId}/completed`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants }}>
+    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders }}>
       {props.children}
     </PropertyContext.Provider>
   )
