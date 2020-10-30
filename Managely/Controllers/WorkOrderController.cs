@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Managely.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Managely.Controllers
+{
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class WorkOrderController : ControllerBase
+    {
+        private readonly IWorkOrderRepository _workOrderRepository;
+
+        public WorkOrderController(IWorkOrderRepository workOrderRepository)
+        {
+            _workOrderRepository = workOrderRepository;
+        }
+
+        [HttpGet("{propertyId}/{status}")]
+        public IActionResult GetOpenWorkOrders(int propertyId, string status)
+        {
+            if (status == "open")
+            {
+                var openWorkOrders = _workOrderRepository.GetOpenWorkOrders(propertyId);
+
+                return Ok(openWorkOrders);
+            }
+
+            if (status == "completed")
+            {
+                var completedWorkOrders = _workOrderRepository.GetCompletedWorkOrders(propertyId);
+
+                return Ok(completedWorkOrders);
+            }
+
+            return NotFound();
+        }
+    }
+}
