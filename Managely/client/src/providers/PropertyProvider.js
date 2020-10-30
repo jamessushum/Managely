@@ -54,8 +54,20 @@ export function PropertyProvider(props) {
     return val;
   }
 
+  const getPropertyCompletedWorkOrders = async (propertyId) => {
+    const token = await getToken();
+    const res = await fetch(`${workOrderApiUrl}/${propertyId}/completed`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders }}>
+    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders }}>
       {props.children}
     </PropertyContext.Provider>
   )

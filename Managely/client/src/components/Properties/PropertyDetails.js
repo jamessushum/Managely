@@ -3,6 +3,7 @@ import { PropertyContext } from '../../providers/PropertyProvider';
 import PropertyInfo from './PropertyInfo';
 import PropertyTenantList from './PropertyTenantList';
 import PropertyOpenWorkOrders from './PropertyOpenWorkOrders';
+import PropertyCompletedWorkOrders from './PropertyCompletedWorkOrders';
 import Pagination from '../../components/Pagination/Pagination';
 import './PropertyDetails.css';
 import { Table } from 'reactstrap';
@@ -10,7 +11,7 @@ import { Table } from 'reactstrap';
 const PropertyDetails = ({ ...props }) => {
   const propertyId = props.match.params.id;
 
-  const { getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders } = useContext(PropertyContext);
+  const { getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders } = useContext(PropertyContext);
 
   // State for property info component
   const [details, setDetails] = useState({
@@ -24,16 +25,23 @@ const PropertyDetails = ({ ...props }) => {
   // State for property tenants component
   const [propertyTenants, setPropertyTenants] = useState([]);
 
+  // State for property open work orders component
+  const [openWorkOrders, setOpenWorkOrders] = useState([]);
+
+  // State for property completed work orders component
+  const [completedWorkOrders, setCompletedWorkOrders] = useState([]);
+
   // State for tenant list pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4)
 
   // State for open work orders list pagination
-  const [currentPageOpenWO, setcurrentPageOpenWO] = useState(1);
+  const [currentPageOpenWO, setCurrentPageOpenWO] = useState(1);
   const [itemsPerPageOpenWO] = useState(1);
 
-  // State for property open work orders
-  const [openWorkOrders, setOpenWorkOrders] = useState([]);
+  // State for completed work orders list pagination
+  const [currentPageCompletedWO, setCurrentPageCompletedWO] = useState(1);
+  const [itemsPerPageCompletedWO] = useState(1);
 
   const propertyDetails = async () => {
     const res = await getPropertyDetails(propertyId);
@@ -53,14 +61,19 @@ const PropertyDetails = ({ ...props }) => {
 
   const getOpenWorkOrders = async () => {
     const res = await getPropertyOpenWorkOrders(propertyId);
-    console.log(res);
     setOpenWorkOrders(res);
+  }
+
+  const getCompletedWorkOrders = async () => {
+    const res = await getPropertyCompletedWorkOrders(propertyId);
+    setCompletedWorkOrders(res);
   }
 
   useEffect(() => {
     propertyDetails();
     getAllPropertyTenants();
     getOpenWorkOrders();
+    getCompletedWorkOrders();
   }, [])
 
   // Get current tenants - for pagination
@@ -73,11 +86,19 @@ const PropertyDetails = ({ ...props }) => {
   const indexOfFirstPostOpenWO = indexOfLastPostOpenWO - itemsPerPageOpenWO;
   const currentOpenWorkOrders = openWorkOrders.slice(indexOfFirstPostOpenWO, indexOfLastPostOpenWO);
 
+  // Get current completed work orders - for pagination
+  const indexOfLastPostCompletedWO = currentPageCompletedWO * itemsPerPageCompletedWO;
+  const indexOfFirstPostCompletedWO = indexOfLastPostCompletedWO - itemsPerPageCompletedWO;
+  const currentCompletedWorkOrders = completedWorkOrders.slice(indexOfFirstPostCompletedWO, indexOfLastPostCompletedWO);
+
   // Change page - for tenant list pagination
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Change page - for open work orders list pagination
-  const paginateOpenWO = (pageNumber => setcurrentPageOpenWO(pageNumber));
+  const paginateOpenWO = (pageNumber) => setCurrentPageOpenWO(pageNumber);
+
+  // Change page - for completed work orders list pagination
+  const paginateCompletedWO = (pageNumber) => setCurrentPageCompletedWO(pageNumber);
 
   return (
     <div className="propertyDetails-main-container">
@@ -122,7 +143,23 @@ const PropertyDetails = ({ ...props }) => {
         <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} />
       </div>
       <div className="propertyDetails-completed last-row">
-        completed work orders
+        <h4>Completed Work Orders</h4>
+        <Table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Status</th>
+              <th>Severity</th>
+              <th>Requested By</th>
+              <th>Date Created</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <PropertyCompletedWorkOrders workOrders={currentCompletedWorkOrders} />
+          </tbody>
+        </Table>
+        <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={completedWorkOrders.length} paginate={paginateCompletedWO} />
       </div>
     </div>
   )
