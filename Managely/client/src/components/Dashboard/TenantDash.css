@@ -7,6 +7,8 @@
   border: 1px solid red;
   grid-column: 1 /3;
   height: 10vh;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tenantDash-openWO {
@@ -17,4 +19,9 @@
 .tenantDash-closedWO {
   border: 1px solid green;
   height: 90vh;
+}
+
+/* ----- Welcome Banner Components ----- */
+.tenantDash-banner-addBtn {
+  padding: 1em;
 }
