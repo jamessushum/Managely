@@ -4,6 +4,7 @@ import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 import { UserProfileContext } from '../providers/UserProfileProvider';
 import { PropertyProvider } from '../providers/PropertyProvider';
+import { WorkOrderProvider } from '../providers/WorkOrderProvider';
 import PropertyManagerDash from './Dashboard/PropertyManagerDash';
 import TenantDash from './Dashboard/TenantDash';
 import PropertyList from './Properties/PropertyList';
@@ -35,7 +36,7 @@ const ApplicationViews = () => {
     },
     {
       name: "WorkOrder Details",
-      provider: PropertyProvider,
+      provider: WorkOrderProvider,
       component: withRouter(WorkOrderDetails),
       path: "/workorder/details/:id",
       to: "/login"
