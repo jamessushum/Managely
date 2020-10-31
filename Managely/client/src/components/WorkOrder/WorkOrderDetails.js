@@ -25,26 +25,18 @@ const WorkOrderDetails = ({ ...props }) => {
 
   // State for work order edit modal
   const [editModal, setEditModal] = useState(false);
-  const [workOrderToEdit, setWorkOrderToEdit] = useState({
-    id: "",
-    subject: "",
-    description: "",
-    createDateTime: "",
-    imageLocation: "",
-    severityId: "",
-    statusId: "",
-    userProfileId: "",
-    propertyId: ""
-  });
+
+  // Form feedback for work order edit modal
+  const [formFeedback, setFormFeedback] = useState(false)
 
   // Toggle work order edit modal
   const editToggle = () => {
     setEditModal(!editModal);
+    setFormFeedback(false);
   }
 
   const getWorkOrder = async () => {
     const res = await getWorkOrderById(workOrderId);
-    console.log(res)
     setWorkOrderInfo({
       id: res.id,
       subject: res.subject,
@@ -57,17 +49,6 @@ const WorkOrderDetails = ({ ...props }) => {
       propertyName: res.property.name,
       imageLocation: res.imageLocation
     });
-    setWorkOrderToEdit({
-      id: res.id,
-      subject: res.subject,
-      description: res.description,
-      createDateTime: res.createDateTime,
-      imageLocation: res.imageLocation,
-      severityId: res.severityId,
-      statusId: res.statusId,
-      userProfileId: res.userProfileId,
-      propertyId: res.propertyId
-    })
   }
 
   useEffect(() => {
@@ -76,7 +57,7 @@ const WorkOrderDetails = ({ ...props }) => {
 
   return (
     <div className="workOrderDetails-container">
-      <WorkOrderEditModal editModal={editModal} editToggle={editToggle} workOrderToEdit={workOrderToEdit} />
+      <WorkOrderEditModal editModal={editModal} editToggle={editToggle} workOrderToEditId={workOrderId} formFeedback={formFeedback} setFormFeedback={setFormFeedback} getUpdatedWorkOrder={getWorkOrder} />
       <div className="workOrderDetails-progressBar">
         progress bar
       </div>
