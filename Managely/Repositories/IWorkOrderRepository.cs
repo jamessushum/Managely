@@ -10,5 +10,7 @@ namespace Managely.Repositories
         List<WorkOrder> GetCompletedWorkOrders(int propertyId);
 
         public WorkOrder GetById(int workOrderId);
+
+        public void Update(WorkOrder workOrder);
     }
 }

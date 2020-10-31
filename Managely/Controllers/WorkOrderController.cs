@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Managely.Models;
 using Managely.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -52,6 +53,19 @@ namespace Managely.Controllers
             }
 
             return Ok(workOrder);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, WorkOrder workOrder)
+        {
+            if (id != workOrder.Id)
+            {
+                return BadRequest();
+            }
+
+            _workOrderRepository.Update(workOrder);
+
+            return NoContent();
         }
     }
 }
