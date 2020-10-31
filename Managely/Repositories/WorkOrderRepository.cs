@@ -365,5 +365,32 @@ namespace Managely.Repositories
                 }
             }
         }
+
+        public void Add(WorkOrder workOrder)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO
+	                                        WorkOrder (Subject, Description, CreateDateTime, ImageLocation, SeverityId, StatusId, UserProfileId, PropertyId)
+                                        OUTPUT INSERTED.Id
+                                        VALUES (@subject, @description, @createDateTime, @imageLocation, @severityId, @statusId, @userProfileId, @propertyId)";
+
+                    DbUtils.AddParameter(cmd, "@subject", workOrder.Subject);
+                    DbUtils.AddParameter(cmd, "@description", workOrder.Description);
+                    DbUtils.AddParameter(cmd, "@createDateTime", workOrder.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@imageLocation", workOrder.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@severityId", workOrder.SeverityId);
+                    DbUtils.AddParameter(cmd, "@statusId", workOrder.StatusId);
+                    DbUtils.AddParameter(cmd, "@userProfileId", workOrder.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@propertyId", workOrder.PropertyId);
+
+                    workOrder.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }
