@@ -6,6 +6,10 @@ import './WorkOrderAddForm.css'
 
 const WorkOrderAddForm = () => {
   const history = useHistory();
+  const loggedInUser = JSON.parse(sessionStorage.userProfile);
+  console.log(loggedInUser);
+
+
   const { getSeverity } = useContext(WorkOrderContext);
   const [severities, setSeverities] = useState([]);
 
