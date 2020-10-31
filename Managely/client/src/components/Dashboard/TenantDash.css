@@ -1,0 +1,20 @@
+.tenantDash-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tenantDash-banner {
+  border: 1px solid red;
+  grid-column: 1 /3;
+  height: 10vh;
+}
+
+.tenantDash-openWO {
+  border: 1px solid blue;
+  height: 90vh;
+}
+
+.tenantDash-closedWO {
+  border: 1px solid green;
+  height: 90vh;
+}
