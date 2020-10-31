@@ -40,5 +40,18 @@ namespace Managely.Controllers
 
             return NotFound();
         }
+
+        [HttpGet("{workOrderId}")]
+        public IActionResult GetById(int workOrderId)
+        {
+            var workOrder = _workOrderRepository.GetById(workOrderId);
+
+            if (workOrder == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(workOrder);
+        }
     }
 }

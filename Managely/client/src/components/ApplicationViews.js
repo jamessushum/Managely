@@ -4,10 +4,12 @@ import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 import { UserProfileContext } from '../providers/UserProfileProvider';
 import { PropertyProvider } from '../providers/PropertyProvider';
+import { WorkOrderProvider } from '../providers/WorkOrderProvider';
 import PropertyManagerDash from './Dashboard/PropertyManagerDash';
 import TenantDash from './Dashboard/TenantDash';
 import PropertyList from './Properties/PropertyList';
 import PropertyDetails from './Properties/PropertyDetails';
+import WorkOrderDetails from './WorkOrder/WorkOrderDetails';
 
 const ApplicationViews = () => {
   const propertyManagerViews = [
@@ -30,6 +32,13 @@ const ApplicationViews = () => {
       provider: PropertyProvider,
       component: withRouter(PropertyDetails),
       path: "/properties/details/:id",
+      to: "/login"
+    },
+    {
+      name: "WorkOrder Details",
+      provider: WorkOrderProvider,
+      component: withRouter(WorkOrderDetails),
+      path: "/workorder/details/:id",
       to: "/login"
     }
   ];
