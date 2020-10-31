@@ -33,6 +33,8 @@ namespace Managely
             services.AddTransient<IPropertyRepository, PropertyRepository>();
             services.AddTransient<IUserPropertyRepository, UserPropertyRepository>();
             services.AddTransient<IWorkOrderRepository, WorkOrderRepository>();
+            services.AddTransient<ISeverityRepository, SeverityRepository>();
+            services.AddTransient<IStatusRepository, StatusRepository>();
 
             services.AddControllers();
 
