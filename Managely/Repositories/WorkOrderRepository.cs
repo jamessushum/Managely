@@ -328,5 +328,42 @@ namespace Managely.Repositories
                 }
             }
         }
+
+        public void Update(WorkOrder workOrder)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE
+	                                        WorkOrder
+                                        SET
+	                                        Subject = @subject,
+	                                        Description = @description,
+	                                        CreateDateTime = @createDateTime,
+	                                        ImageLocation = @imageLocation,
+	                                        SeverityId = @severityId,
+	                                        StatusId = @statusId,
+	                                        UserProfileId = @userProfileId,
+	                                        PropertyId = @propertyId
+                                        WHERE
+	                                        Id = @workOrderId";
+
+                    DbUtils.AddParameter(cmd, "@subject", workOrder.Subject);
+                    DbUtils.AddParameter(cmd, "@description", workOrder.Description);
+                    DbUtils.AddParameter(cmd, "@createDateTime", workOrder.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@imageLocation", workOrder.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@severityId", workOrder.SeverityId);
+                    DbUtils.AddParameter(cmd, "@statusId", workOrder.StatusId);
+                    DbUtils.AddParameter(cmd, "@userProfileId", workOrder.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@propertyId", workOrder.PropertyId);
+                    DbUtils.AddParameter(cmd, "@workOrderId", workOrder.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
