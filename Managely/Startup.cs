@@ -35,6 +35,7 @@ namespace Managely
             services.AddTransient<IWorkOrderRepository, WorkOrderRepository>();
             services.AddTransient<ISeverityRepository, SeverityRepository>();
             services.AddTransient<IStatusRepository, StatusRepository>();
+            services.AddTransient<IWorkOrderCommentRepository, WorkOrderCommentRepository>();
 
             services.AddControllers();
 
