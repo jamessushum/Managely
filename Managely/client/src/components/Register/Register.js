@@ -27,8 +27,6 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [imageLocation, setImageLocation] = useState("");
-  const [isImageLoading, setIsImageLoading] = useState(false)
-
 
   const getAllUserTypes = async () => {
     const res = await getUserTypes();
@@ -48,7 +46,6 @@ const Register = () => {
 
   const handleImageField = async (e) => {
     const files = e.target.files
-    setIsImageLoading(true)
     const data = new FormData()
     data.append('file', files[0])
     data.append('upload_preset', 'flyingboar')
@@ -58,7 +55,6 @@ const Register = () => {
     })
     const file = await res.json()
     setImageLocation(file.secure_url)
-    setIsImageLoading(false)
   }
 
   const handleCheckboxField = (e) => {
