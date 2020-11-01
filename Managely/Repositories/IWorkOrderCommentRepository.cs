@@ -1,4 +1,5 @@
 ﻿using Managely.Models;
+using System.Collections.Generic;
 
 namespace Managely.Repositories
 {
@@ -7,5 +8,7 @@ namespace Managely.Repositories
         void Add(WorkOrderComment workOrderComment);
 
         WorkOrderComment GetById(int workOrderCommentId);
+
+        List<WorkOrderComment> GetAllByWorkOrderId(int workOrderId);
     }
 }

@@ -35,6 +35,14 @@ namespace Managely.Controllers
             return Ok(workOrderComment);
         }
 
+        [HttpGet("{all}/{workOrderId}")]
+        public IActionResult GetAllByWorkOrderId(string all, int workOrderId)
+        {
+            var workOrderComments = _workOrderCommentRepository.GetAllByWorkOrderId(workOrderId);
+
+            return Ok(workOrderComments);
+        }
+
         [HttpPost]
         public IActionResult Post(WorkOrderComment workOrderComment)
         {
