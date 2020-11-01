@@ -67,7 +67,7 @@ const WorkOrderDetails = ({ ...props }) => {
       </div>
       <div className="workOrderDetails-comments-container">
         <div className="workOrderDetails-comments-new">
-          <WorkOrderCommentNew />
+          <WorkOrderCommentNew workOrderId={workOrderId} />
         </div>
         <div className="workOrderDetails-comments-list"></div>
       </div>

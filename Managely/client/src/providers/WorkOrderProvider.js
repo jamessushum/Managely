@@ -8,6 +8,7 @@ export function WorkOrderProvider(props) {
   const severityApiUrl = '/api/severity';
   const statusApiUrl = '/api/status';
   const userPropertyApiUrl = '/api/userproperty';
+  const workOrderCommentApiUrl = '/api/workordercomment';
 
   const { getToken } = useContext(UserProfileContext);
 
@@ -86,8 +87,22 @@ export function WorkOrderProvider(props) {
     return val;
   }
 
+  const addWorkOrderComment = async (workOrderComment) => {
+    const token = await getToken();
+    const res = await fetch(workOrderCommentApiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(workOrderComment)
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder }}>
+    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder, addWorkOrderComment }}>
       {props.children}
     </WorkOrderContext.Provider>
   )

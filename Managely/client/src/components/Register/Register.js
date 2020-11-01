@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { PropertyContext } from '../../providers/PropertyProvider';
 import { useHistory } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import './Register.css';
 
 const Register = () => {
@@ -27,6 +27,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [imageLocation, setImageLocation] = useState("");
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const getAllUserTypes = async () => {
     const res = await getUserTypes();
@@ -46,6 +47,7 @@ const Register = () => {
 
   const handleImageField = async (e) => {
     const files = e.target.files
+    setIsImageLoading(true)
     const data = new FormData()
     data.append('file', files[0])
     data.append('upload_preset', 'flyingboar')
@@ -55,6 +57,7 @@ const Register = () => {
     })
     const file = await res.json()
     setImageLocation(file.secure_url)
+    setIsImageLoading(false)
   }
 
   const handleCheckboxField = (e) => {
@@ -158,6 +161,7 @@ const Register = () => {
         <FormGroup>
           <Label for="ImageLocation">Upload Image <small>(optional)</small></Label>
           <Input type="file" id="ImageLocation" maxLength="255" onChange={handleImageField} />
+          {isImageLoading ? <Spinner size="sm" color="warning" /> : null}
         </FormGroup>
         {userProfile.UserTypeId === "2" ? <h6>Select Property <small>(required)</small></h6> : null}
         {loadProperties}
