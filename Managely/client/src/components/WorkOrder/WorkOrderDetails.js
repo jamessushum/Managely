@@ -65,7 +65,8 @@ const WorkOrderDetails = ({ ...props }) => {
         <WorkOrderInfo workOrder={workOrderInfo} editToggle={editToggle} />
       </div>
       <div className="workOrderDetails-comments-container">
-        comments container
+        <div className="workOrderDetails-comments-new"></div>
+        <div className="workOrderDetails-comments-list"></div>
       </div>
     </div>
   )

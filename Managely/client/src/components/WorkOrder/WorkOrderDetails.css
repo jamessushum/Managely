@@ -19,3 +19,14 @@
   border: 1px solid green;
   height: 90vh;
 }
+
+/* ----- WorkOrder Comments Component ----- */
+.workOrderDetails-comments-new {
+  height: 15vh;
+  border: 1px solid orange;
+}
+
+.workOrderDetails-comments-list {
+  height: 75vh;
+  border: 1px solid yellowgreen;
+}
