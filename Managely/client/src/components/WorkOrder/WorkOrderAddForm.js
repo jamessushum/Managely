@@ -7,19 +7,32 @@ import './WorkOrderAddForm.css'
 const WorkOrderAddForm = () => {
   const history = useHistory();
   const loggedInUser = JSON.parse(sessionStorage.userProfile);
-  console.log(loggedInUser);
 
-
-  const { getSeverity } = useContext(WorkOrderContext);
+  const { getSeverity, getPropertyByUser } = useContext(WorkOrderContext);
   const [severities, setSeverities] = useState([]);
+  const [properties, setProperties] = useState([]);
 
   const getSeverities = async () => {
     const res = await getSeverity();
     setSeverities(res);
   }
 
+  const getUserProperties = async () => {
+    const res = await getPropertyByUser(loggedInUser.id);
+    const propertyNames = res.map(property => {
+      return (
+        {
+          id: property.property.id,
+          name: property.property.name
+        }
+      )
+    });
+    setProperties(propertyNames);
+  }
+
   useEffect(() => {
     getSeverities();
+    getUserProperties();
   }, [])
 
   return (
@@ -43,7 +56,10 @@ const WorkOrderAddForm = () => {
         </FormGroup>
         <FormGroup>
           <Label for="propertyId">Property</Label>
-          <Input type="select" id="propertyId"></Input>
+          <Input type="select" id="propertyId" defaultValue="">
+            <option value="" disabled>Select Property</option>
+            {properties.map(property => <option key={property.id} value={property.id}>{property.name}</option>)}
+          </Input>
         </FormGroup>
         <FormGroup>
           <Label for="imageLocation">Image</Label>
