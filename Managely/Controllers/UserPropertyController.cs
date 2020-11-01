@@ -52,5 +52,18 @@ namespace Managely.Controllers
 
             return Ok(tenants);
         }
+
+        [HttpGet("{user}/{userProfileId}")]
+        public IActionResult GetPropertyByUser(string user, int userProfileId)
+        {
+            var userProperties = _userPropertyRepository.GetPropertyByUser(userProfileId);
+
+            if (userProperties.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(userProperties);
+        }
     }
 }

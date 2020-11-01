@@ -7,6 +7,8 @@ namespace Managely.Repositories
     {
         void AddUserProperty(UserProperty userProperty);
 
-        public List<UserProperty> GetPropertyTenants(int propertyId);
+        List<UserProperty> GetPropertyTenants(int propertyId);
+
+        List<UserProperty> GetPropertyByUser(int userProfileId);
     }
 }
