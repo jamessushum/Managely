@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Managely.Controllers
 {
-    [Authorize]
+    /*[Authorize]*/
     [Route("api/[controller]")]
     [ApiController]
     public class WorkOrderController : ControllerBase
@@ -66,6 +66,14 @@ namespace Managely.Controllers
             _workOrderRepository.Update(workOrder);
 
             return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult Post(WorkOrder workOrder)
+        {
+            _workOrderRepository.Add(workOrder);
+
+            return CreatedAtAction(nameof(GetById), new { workOrderId = workOrder.Id }, workOrder);
         }
     }
 }

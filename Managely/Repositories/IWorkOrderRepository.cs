@@ -12,5 +12,7 @@ namespace Managely.Repositories
         public WorkOrder GetById(int workOrderId);
 
         public void Update(WorkOrder workOrder);
+
+        public void Add(WorkOrder workOrder);
     }
 }

@@ -1,0 +1,18 @@
+.newWorkOrder-container {
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+  padding: 3em;
+}
+
+.newWorkOrder-form {
+  padding: 2em;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.newWorkOrder-btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5em;
+}
