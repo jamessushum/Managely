@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { WorkOrderContext } from '../../providers/WorkOrderProvider';
 import WorkOrderInfo from './WorkOrderInfo';
 import WorkOrderEditModal from './WorkOrderEditModal';
+import WorkOrderCommentNew from '../WorkOrderComment/WorkOrderCommentNew';
 import './WorkOrderDetails.css'
 
 const WorkOrderDetails = ({ ...props }) => {
@@ -65,7 +66,9 @@ const WorkOrderDetails = ({ ...props }) => {
         <WorkOrderInfo workOrder={workOrderInfo} editToggle={editToggle} />
       </div>
       <div className="workOrderDetails-comments-container">
-        <div className="workOrderDetails-comments-new"></div>
+        <div className="workOrderDetails-comments-new">
+          <WorkOrderCommentNew />
+        </div>
         <div className="workOrderDetails-comments-list"></div>
       </div>
     </div>

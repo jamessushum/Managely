@@ -4,29 +4,40 @@
 }
 
 .workOrderDetails-progressBar {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   grid-column: 1 /3;
   height: 10vh;
 }
 
 .workOrderDetails-info {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   height: 90vh;
   padding: 1.5em;
 }
 
 .workOrderDetails-comments-container {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   height: 90vh;
 }
 
 /* ----- WorkOrder Comments Component ----- */
 .workOrderDetails-comments-new {
   height: 15vh;
-  border: 1px solid orange;
+  padding: 1.5rem;
+  /* border: 1px solid orange; */
 }
 
 .workOrderDetails-comments-list {
   height: 75vh;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
+}
+
+.workOrderComment-new-container {
+  padding: 1rem 1rem 0rem 1rem;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.workOrderComment-new-attachments {
+  margin-top: 1.5em;
 }
