@@ -113,8 +113,19 @@ export function WorkOrderProvider(props) {
     return val;
   }
 
+  const deleteWorkOrder = async (workOrderId) => {
+    const token = await getToken();
+    const res = await fetch(`${workOrderApiUrl}/${workOrderId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return res;
+  }
+
   return (
-    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder, addWorkOrderComment, getWorkOrderComments }}>
+    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder, addWorkOrderComment, getWorkOrderComments, deleteWorkOrder }}>
       {props.children}
     </WorkOrderContext.Provider>
   )
