@@ -23,20 +23,23 @@ const PropertyList = () => {
       <div className="propertyList-btn-container">
         <Button color="success">Add Property</Button>
       </div>
-      <Table className="propertyList-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Property Name</th>
-            <th>Property Address</th>
-            <th>Property Type</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {activeProperties.map(property => <PropertyCard key={property.id} property={property} />)}
-        </tbody>
-      </Table>
+      <div className="propertyList-table">
+        <h4>Properties Under Management</h4>
+        <Table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Property Name</th>
+              <th>Property Address</th>
+              <th>Property Type</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {activeProperties.map(property => <PropertyCard key={property.id} property={property} />)}
+          </tbody>
+        </Table>
+      </div>
     </>
   )
 }

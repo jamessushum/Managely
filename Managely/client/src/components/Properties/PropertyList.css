@@ -1,7 +1,7 @@
 .propertyList-table {
-  /* border: 1px solid blue; */
+  padding: 1.5rem;
 }
 
 .propertyList-btn-container {
-  margin: 1em;
+  padding: 1.5rem;
 }
