@@ -1,7 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { FaEye } from "react-icons/fa";
+import { Button } from 'reactstrap';
 
 const PropertyCompletedWorkOrders = ({ workOrders }) => {
+  const history = useHistory();
 
   return (
     <>
@@ -12,7 +15,7 @@ const PropertyCompletedWorkOrders = ({ workOrders }) => {
           <td>{order.severity.type}</td>
           <td>{order.userProfile.fullName}</td>
           <td>{order.createDateTime}</td>
-          <td><FaEye /></td>
+          <td><Button outline color="secondary" onClick={() => history.push(`/workorder/details/${order.id}`)}><FaEye /></Button></td>
         </tr>
       ))}
     </>
