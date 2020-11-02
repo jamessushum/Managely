@@ -40,7 +40,7 @@ const TenantDash = () => {
   return (
     <div className="tenantDash-container">
       <div className="tenantDash-banner">
-        <div>tenant welcome banner</div>
+        <div><h4>Welcome, {loggedInUser.fullName}!</h4></div>
         <div className="tenantDash-banner-addBtn">
           <Button color="success" onClick={() => history.push('/workorder/new')}>Create New Work Order</Button>
         </div>
