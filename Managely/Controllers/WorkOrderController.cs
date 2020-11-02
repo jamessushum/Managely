@@ -94,6 +94,26 @@ namespace Managely.Controllers
             return NoContent();
         }
 
+        [HttpGet("{user}/{userProfileId}/{status}")]
+        public IActionResult GetUserWorkOrders(string user, int userProfileId, string status)
+        {
+            if (user == "tenant" && status == "open")
+            {
+                var tenantOpenWorkOrders = _workOrderRepository.GetTenantOpenWorkOrders(userProfileId);
+
+                return Ok(tenantOpenWorkOrders);
+            }
+
+            if (user == "tenant" && status == "closed")
+            {
+                var tenantClosedWorkOrders = _workOrderRepository.GetTenantCompletedWorkOrders(userProfileId);
+
+                return Ok(tenantClosedWorkOrders);
+            }
+
+            return NotFound();
+        }
+
         // Method to get logged-in user by the firebaseId
         private UserProfile GetCurrentUserProfile()
         {

@@ -16,5 +16,9 @@ namespace Managely.Repositories
         void Add(WorkOrder workOrder);
 
         void Delete(int workOrderId);
+
+        List<WorkOrder> GetTenantOpenWorkOrders(int userProfileId);
+
+        List<WorkOrder> GetTenantCompletedWorkOrders(int userProfileId);
     }
 }
