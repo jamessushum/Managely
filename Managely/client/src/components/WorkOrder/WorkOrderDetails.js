@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { WorkOrderContext } from '../../providers/WorkOrderProvider';
 import WorkOrderInfo from './WorkOrderInfo';
 import WorkOrderEditModal from './WorkOrderEditModal';
+import WorkOrderCommentNew from '../WorkOrderComment/WorkOrderCommentNew';
+import WorkOrderCommentsList from '../WorkOrderComment/WorkOrderCommentsList';
 import './WorkOrderDetails.css'
 
 const WorkOrderDetails = ({ ...props }) => {
   const workOrderId = props.match.params.id;
 
-  const { getWorkOrderById } = useContext(WorkOrderContext);
+  const { getWorkOrderById, getWorkOrderComments } = useContext(WorkOrderContext);
 
   // State for work order info
   const [workOrderInfo, setWorkOrderInfo] = useState({
@@ -35,6 +37,9 @@ const WorkOrderDetails = ({ ...props }) => {
     setFormFeedback(false);
   }
 
+  // State for work order comments list
+  const [workOrderComments, setWorkOrderComments] = useState([]);
+
   const getWorkOrder = async () => {
     const res = await getWorkOrderById(workOrderId);
     setWorkOrderInfo({
@@ -51,8 +56,14 @@ const WorkOrderDetails = ({ ...props }) => {
     });
   }
 
+  const getComments = async () => {
+    const res = await getWorkOrderComments(workOrderId);
+    setWorkOrderComments(res);
+  }
+
   useEffect(() => {
     getWorkOrder();
+    getComments();
   }, [])
 
   return (
@@ -65,7 +76,12 @@ const WorkOrderDetails = ({ ...props }) => {
         <WorkOrderInfo workOrder={workOrderInfo} editToggle={editToggle} />
       </div>
       <div className="workOrderDetails-comments-container">
-        comments container
+        <div className="workOrderDetails-comments-new">
+          <WorkOrderCommentNew workOrderId={workOrderId} getComments={getComments} />
+        </div>
+        <div className="workOrderDetails-comments-list">
+          <WorkOrderCommentsList workOrderComments={workOrderComments} />
+        </div>
       </div>
     </div>
   )

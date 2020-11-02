@@ -37,11 +37,11 @@ const PropertyDetails = ({ ...props }) => {
 
   // State for open work orders list pagination
   const [currentPageOpenWO, setCurrentPageOpenWO] = useState(1);
-  const [itemsPerPageOpenWO] = useState(1);
+  const [itemsPerPageOpenWO] = useState(3);
 
   // State for completed work orders list pagination
   const [currentPageCompletedWO, setCurrentPageCompletedWO] = useState(1);
-  const [itemsPerPageCompletedWO] = useState(1);
+  const [itemsPerPageCompletedWO] = useState(3);
 
   const propertyDetails = async () => {
     const res = await getPropertyDetails(propertyId);

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { WorkOrderContext } from '../../providers/WorkOrderProvider';
 import { useHistory } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import './WorkOrderAddForm.css'
 
 const WorkOrderAddForm = () => {
@@ -22,6 +22,7 @@ const WorkOrderAddForm = () => {
   });
 
   const [imageLocation, setImageLocation] = useState("");
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const getSeverities = async () => {
     const res = await getSeverity();
@@ -49,6 +50,7 @@ const WorkOrderAddForm = () => {
 
   const handleImageField = async (e) => {
     const files = e.target.files
+    setIsImageLoading(true)
     const data = new FormData()
     data.append('file', files[0])
     data.append('upload_preset', 'flyingboar')
@@ -58,6 +60,7 @@ const WorkOrderAddForm = () => {
     })
     const file = await res.json()
     setImageLocation(file.secure_url)
+    setIsImageLoading(false)
   }
 
   const handleFormSubmit = async (e) => {
@@ -117,6 +120,7 @@ const WorkOrderAddForm = () => {
         <FormGroup>
           <Label for="imageLocation">Image <small>(optional)</small></Label>
           <Input type="file" id="imageLocation" onChange={handleImageField} />
+          {isImageLoading ? <Spinner size="sm" color="warning" /> : null}
         </FormGroup>
         <div className="newWorkOrder-btn-container">
           <Button color="success" onClick={handleFormSubmit}>Create</Button>
