@@ -6,13 +6,15 @@
 .workOrderDetails-progressBar {
   /* border: 1px solid red; */
   grid-column: 1 /3;
-  height: 10vh;
+  /* height: 10vh; */
+  padding: 1rem;
 }
 
 .workOrderDetails-info {
   /* border: 1px solid blue; */
   height: 90vh;
-  padding: 1.5em;
+  padding: 1.5rem;
+  overflow: auto;
 }
 
 .workOrderDetails-comments-container {

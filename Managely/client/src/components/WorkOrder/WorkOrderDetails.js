@@ -4,7 +4,9 @@ import WorkOrderInfo from './WorkOrderInfo';
 import WorkOrderEditModal from './WorkOrderEditModal';
 import WorkOrderCommentNew from '../WorkOrderComment/WorkOrderCommentNew';
 import WorkOrderCommentsList from '../WorkOrderComment/WorkOrderCommentsList';
-import './WorkOrderDetails.css'
+import WorkOrderProgressBar from './WorkOrderProgressBar';
+import './WorkOrderDetails.css';
+
 
 const WorkOrderDetails = ({ ...props }) => {
   const workOrderId = props.match.params.id;
@@ -70,7 +72,7 @@ const WorkOrderDetails = ({ ...props }) => {
     <div className="workOrderDetails-container">
       <WorkOrderEditModal editModal={editModal} editToggle={editToggle} workOrderToEditId={workOrderId} formFeedback={formFeedback} setFormFeedback={setFormFeedback} getUpdatedWorkOrder={getWorkOrder} />
       <div className="workOrderDetails-progressBar">
-        progress bar
+        <WorkOrderProgressBar workOrderStatus={workOrderInfo.status} />
       </div>
       <div className="workOrderDetails-info">
         <WorkOrderInfo workOrder={workOrderInfo} editToggle={editToggle} />
