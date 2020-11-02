@@ -103,63 +103,68 @@ const PropertyDetails = ({ ...props }) => {
   return (
     <div className="propertyDetails-main-container">
       <div className="propertyDetails-info">
-        <h4>Property Info</h4>
         <PropertyInfo property={details} />
       </div>
       <div className="propertyDetails-tenants">
-        <h4>Property Tenants</h4>
-        <Table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Unit #</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <PropertyTenantList tenants={currentTenants} />
-          </tbody>
-        </Table>
-        <Pagination itemsPerPage={itemsPerPage} totalItems={propertyTenants.length} paginate={paginate} />
+        <div className="propertyDetails-tenants-table">
+          <h4>Property Tenants</h4>
+          <Table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Unit #</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <PropertyTenantList tenants={currentTenants} />
+            </tbody>
+          </Table>
+          <Pagination itemsPerPage={itemsPerPage} totalItems={propertyTenants.length} paginate={paginate} />
+        </div>
       </div>
       <div className="propertyDetails-outstanding last-row">
-        <h4>Open Work Orders</h4>
-        <Table>
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Status</th>
-              <th>Severity</th>
-              <th>Requested By</th>
-              <th>Date Created</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <PropertyOpenWorkOrders workOrders={currentOpenWorkOrders} />
-          </tbody>
-        </Table>
-        <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} />
+        <div className="propertyDetails-outstanding-table">
+          <h4>Open Work Orders</h4>
+          <Table>
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Severity</th>
+                <th>Requested By</th>
+                <th>Date Created</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <PropertyOpenWorkOrders workOrders={currentOpenWorkOrders} />
+            </tbody>
+          </Table>
+          <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} />
+        </div>
       </div>
       <div className="propertyDetails-completed last-row">
-        <h4>Completed Work Orders</h4>
-        <Table>
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Status</th>
-              <th>Severity</th>
-              <th>Requested By</th>
-              <th>Date Created</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <PropertyCompletedWorkOrders workOrders={currentCompletedWorkOrders} />
-          </tbody>
-        </Table>
-        <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={completedWorkOrders.length} paginate={paginateCompletedWO} />
+        <div className="propertyDetails-completed-table">
+          <h4>Completed Work Orders</h4>
+          <Table>
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Severity</th>
+                <th>Requested By</th>
+                <th>Date Created</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <PropertyCompletedWorkOrders workOrders={currentCompletedWorkOrders} />
+            </tbody>
+          </Table>
+          <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={completedWorkOrders.length} paginate={paginateCompletedWO} />
+        </div>
       </div>
     </div>
   )

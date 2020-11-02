@@ -8,35 +8,53 @@
 }
 
 .propertyDetails-info {
-  width: 49vw;
-  height: 50vh;
+  /* width: 50vw; */
+  /* height: 50vh; */
   /* border: 1px solid red; */
   text-align: center;
   overflow: auto;
-  padding: 0.5em;
+  padding: 1.5em;
 }
 
 .propertyDetails-tenants {
-  width: 50vw;
-  height: 50vh;
+  /* width: 50vw; */
+  /* height: 50vh; */
   /* border: 1px solid blue; */
   overflow: auto;
-  padding: 0.5em;
+  padding: 1.5em;
   text-align: center;
 }
 
 .propertyDetails-outstanding {
   /* border: 1px solid green; */
-  height: 25vh;
+  /* height: 25vh; */
   text-align: center;
   overflow: auto;
-  padding: 0.5em;
+  padding: 1.5rem;
 }
 
 .propertyDetails-completed {
   /* border: 1px solid purple; */
-  height: 25vh;
+  /* height: 25vh; */
   text-align: center;
   overflow: auto;
-  padding: 0.5em;
+  padding: 1.5rem;
+}
+
+.propertyDetails-outstanding-table {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.propertyDetails-completed-table {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.propertyDetails-tenants-table {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 1rem;
 }
