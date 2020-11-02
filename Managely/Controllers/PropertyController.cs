@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Managely.Models;
 using Managely.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +39,15 @@ namespace Managely.Controllers
             }
 
             return Ok(property);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Post(Property property)
+        {
+            _propertyRepository.Add(property);
+
+            return CreatedAtAction(nameof(Get), new { id = property.Id }, property);
         }
     }
 }

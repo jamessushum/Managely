@@ -7,6 +7,7 @@ export function PropertyProvider(props) {
   const propertyApiUrl = '/api/property';
   const userPropertyApiUrl = '/api/userproperty';
   const workOrderApiUrl = '/api/workorder';
+  const propertyTypeApiUrl = '/api/propertytype';
 
   const { getToken } = useContext(UserProfileContext);
 
@@ -66,8 +67,34 @@ export function PropertyProvider(props) {
     return val;
   }
 
+  const addNewProperty = async (property) => {
+    const token = await getToken();
+    const res = await fetch(propertyApiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(property)
+    });
+    const val = await res.json();
+    return val;
+  }
+
+  const getPropertyTypes = async () => {
+    const token = await getToken();
+    const res = await fetch(propertyTypeApiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders }}>
+    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders, addNewProperty, getPropertyTypes }}>
       {props.children}
     </PropertyContext.Provider>
   )

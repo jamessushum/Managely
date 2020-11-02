@@ -5,7 +5,7 @@ const PropertyTenantList = ({ tenants }) => {
 
   return (
     <>
-      {tenants.map(tenant => (
+      {tenants.length === 0 ? <tr><td><h6>No current tenants</h6></td></tr> : tenants.map(tenant => (
         <tr key={tenant.userProfile.id}>
           <td>{tenant.userProfile.fullName}</td>
           <td>{tenant.userProfile.email}</td>

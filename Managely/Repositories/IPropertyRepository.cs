@@ -8,5 +8,7 @@ namespace Managely.Repositories
         List<Property> GetAllProperties();
 
         public Property GetPropertyById(int propertyId);
+
+        void Add(Property property);
     }
 }

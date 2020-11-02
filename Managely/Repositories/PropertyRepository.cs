@@ -118,5 +118,29 @@ namespace Managely.Repositories
                 }
             }
         }
+
+        public void Add(Property property)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO
+	                                        Property (Name, Address, ImageLocation, IsActive, PropertyTypeId)
+                                        OUTPUT INSERTED.Id
+                                        VALUES (@name, @address, @imageLocation, @isActive, @propertyTypeId)";
+
+                    DbUtils.AddParameter(cmd, "@name", property.Name);
+                    DbUtils.AddParameter(cmd, "@address", property.Address);
+                    DbUtils.AddParameter(cmd, "@imageLocation", property.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@isActive", property.IsActive);
+                    DbUtils.AddParameter(cmd, "@propertyTypeId", property.PropertyTypeId);
+
+                    property.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }
