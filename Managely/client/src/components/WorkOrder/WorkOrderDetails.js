@@ -5,6 +5,7 @@ import WorkOrderEditModal from './WorkOrderEditModal';
 import WorkOrderCommentNew from '../WorkOrderComment/WorkOrderCommentNew';
 import WorkOrderCommentsList from '../WorkOrderComment/WorkOrderCommentsList';
 import WorkOrderProgressBar from './WorkOrderProgressBar';
+import WorkOrderDeleteModal from './WorkOrderDeleteModal';
 import './WorkOrderDetails.css';
 
 
@@ -25,6 +26,7 @@ const WorkOrderDetails = ({ ...props }) => {
     userCompany: "",
     propertyName: "",
     imageLocation: "",
+    propertyId: "",
   });
 
   // State for work order edit modal
@@ -37,6 +39,14 @@ const WorkOrderDetails = ({ ...props }) => {
   const editToggle = () => {
     setEditModal(!editModal);
     setFormFeedback(false);
+  }
+
+  // State for work order delete modal
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  // Toggle work order delete modal
+  const deleteToggle = () => {
+    setDeleteModal(!deleteModal);
   }
 
   // State for work order comments list
@@ -54,7 +64,8 @@ const WorkOrderDetails = ({ ...props }) => {
       userFullName: res.userProfile.fullName,
       userCompany: res.userProfile.company,
       propertyName: res.property.name,
-      imageLocation: res.imageLocation
+      imageLocation: res.imageLocation,
+      propertyId: res.propertyId
     });
   }
 
@@ -71,11 +82,12 @@ const WorkOrderDetails = ({ ...props }) => {
   return (
     <div className="workOrderDetails-container">
       <WorkOrderEditModal editModal={editModal} editToggle={editToggle} workOrderToEditId={workOrderId} formFeedback={formFeedback} setFormFeedback={setFormFeedback} getUpdatedWorkOrder={getWorkOrder} />
+      <WorkOrderDeleteModal deleteModal={deleteModal} deleteToggle={deleteToggle} workOrderInfo={workOrderInfo} />
       <div className="workOrderDetails-progressBar">
         <WorkOrderProgressBar workOrderStatus={workOrderInfo.status} />
       </div>
       <div className="workOrderDetails-info">
-        <WorkOrderInfo workOrder={workOrderInfo} editToggle={editToggle} />
+        <WorkOrderInfo workOrder={workOrderInfo} editToggle={editToggle} deleteToggle={deleteToggle} />
       </div>
       <div className="workOrderDetails-comments-container">
         <div className="workOrderDetails-comments-new">

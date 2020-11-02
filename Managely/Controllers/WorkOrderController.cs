@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Managely.Models;
 using Managely.Repositories;
@@ -10,16 +11,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Managely.Controllers
 {
-    /*[Authorize]*/
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class WorkOrderController : ControllerBase
     {
         private readonly IWorkOrderRepository _workOrderRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
-        public WorkOrderController(IWorkOrderRepository workOrderRepository)
+        public WorkOrderController(IWorkOrderRepository workOrderRepository, IUserProfileRepository userProfileRepository)
         {
             _workOrderRepository = workOrderRepository;
+            _userProfileRepository = userProfileRepository;
         }
 
         [HttpGet("{propertyId}/{status}")]
@@ -74,6 +77,28 @@ namespace Managely.Controllers
             _workOrderRepository.Add(workOrder);
 
             return CreatedAtAction(nameof(GetById), new { workOrderId = workOrder.Id }, workOrder);
+        }
+
+        [HttpDelete("{workOrderId}")]
+        public IActionResult Delete(int workOrderId)
+        {
+            var currentUserProfile = GetCurrentUserProfile();
+
+            if (currentUserProfile.UserType.Type != "Property Manager")
+            {
+                return Unauthorized();
+            }
+
+            _workOrderRepository.Delete(workOrderId);
+
+            return NoContent();
+        }
+
+        // Method to get logged-in user by the firebaseId
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

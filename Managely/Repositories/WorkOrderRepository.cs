@@ -392,5 +392,49 @@ namespace Managely.Repositories
                 }
             }
         }
+
+        public void Delete(int workOrderId)
+        {
+            // Invoking method to also delete work order comments associated with work order to be deleted
+            DeleteWorkOrderComments(workOrderId);
+
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM	
+	                                        WorkOrder
+                                        WHERE
+	                                        Id = @workOrderId";
+
+                    DbUtils.AddParameter(cmd, "@workOrderId", workOrderId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // Method to delete work order comments associated with specific work order id
+        public void DeleteWorkOrderComments(int workOrderId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM	
+	                                        WorkOrderComment
+                                        WHERE
+	                                        WorkOrderId = @workOrderId";
+
+                    DbUtils.AddParameter(cmd, "@workOrderId", workOrderId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
