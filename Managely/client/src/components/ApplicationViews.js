@@ -58,6 +58,13 @@ const ApplicationViews = () => {
       component: withRouter(WorkOrderAddForm),
       path: "/workorder/new",
       to: "/login"
+    },
+    {
+      name: "WorkOrder Details",
+      provider: WorkOrderProvider,
+      component: withRouter(WorkOrderDetails),
+      path: "/workorder/details/:id",
+      to: "/login"
     }
   ];
 

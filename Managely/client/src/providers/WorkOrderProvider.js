@@ -124,8 +124,32 @@ export function WorkOrderProvider(props) {
     return res;
   }
 
+  const getTenantOpenWorkOrders = async (userProfileId) => {
+    const token = await getToken();
+    const res = await fetch(`${workOrderApiUrl}/tenant/${userProfileId}/open`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
+  const getTenantClosedWorkOrders = async (userProfileId) => {
+    const token = await getToken();
+    const res = await fetch(`${workOrderApiUrl}/tenant/${userProfileId}/closed`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder, addWorkOrderComment, getWorkOrderComments, deleteWorkOrder }}>
+    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder, addWorkOrderComment, getWorkOrderComments, deleteWorkOrder, getTenantOpenWorkOrders, getTenantClosedWorkOrders }}>
       {props.children}
     </WorkOrderContext.Provider>
   )

@@ -2,13 +2,14 @@ import React from 'react';
 import { Button } from 'reactstrap';
 
 const WorkOrderInfo = ({ workOrder, editToggle, deleteToggle }) => {
+  const loggedInUser = JSON.parse(sessionStorage.userProfile);
 
   return (
     <div className="card">
       <h4 className="card-header">
         Work Order Details
-        <Button className="ml-3" size="sm" onClick={() => editToggle()}>Update</Button>
-        <Button className="ml-2" color="danger" size="sm" onClick={() => deleteToggle()}>Delete</Button>
+        {loggedInUser.userTypeId === 2 ? null : <Button className="ml-3" size="sm" onClick={() => editToggle()}>Update</Button>}
+        {loggedInUser.userTypeId === 2 ? null : <Button className="ml-2" color="danger" size="sm" onClick={() => deleteToggle()}>Delete</Button>}
       </h4>
       <div className="card-body">
         <h5 className="card-title">{workOrder.subject}</h5>

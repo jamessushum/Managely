@@ -49,9 +49,9 @@ const Header = () => {
             }
             {isLoggedIn && !isPropertyManager &&
               <>
-                <NavItem className="mx-0 mx-lg-1">
+                {/* <NavItem className="mx-0 mx-lg-1">
                   <NavLink tag={RRNavLink} to="">Settings</NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem className="mx-0 mx-lg-1">
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
