@@ -45,11 +45,6 @@ namespace Managely.Controllers
         {
             var tenants = _userPropertyRepository.GetPropertyTenants(propertyId);
 
-            if (tenants.Count == 0)
-            {
-                return NotFound();
-            }
-
             return Ok(tenants);
         }
 
