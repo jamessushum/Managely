@@ -101,8 +101,20 @@ export function WorkOrderProvider(props) {
     return val;
   }
 
+  const getWorkOrderComments = async (workOrderId) => {
+    const token = await getToken();
+    const res = await fetch(`${workOrderCommentApiUrl}/all/${workOrderId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder, addWorkOrderComment }}>
+    <WorkOrderContext.Provider value={{ getWorkOrderById, getSeverity, getStatus, updateWorkOrder, getPropertyByUser, addNewWorkOrder, addWorkOrderComment, getWorkOrderComments }}>
       {props.children}
     </WorkOrderContext.Provider>
   )

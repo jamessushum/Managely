@@ -30,6 +30,8 @@
 .workOrderDetails-comments-list {
   height: 75vh;
   /* border: 1px solid yellowgreen; */
+  padding: 1.5rem;
+  overflow: auto;
 }
 
 .workOrderComment-new-container {
@@ -40,4 +42,13 @@
 
 .workOrderComment-new-attachments {
   margin-top: 1.5em;
+}
+
+.workOrderComment-img {
+  height: 25%;
+  width: 25%;
+}
+
+.workOrderComment-card {
+  margin-bottom: 1rem;
 }

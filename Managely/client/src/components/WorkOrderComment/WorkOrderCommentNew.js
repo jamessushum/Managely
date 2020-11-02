@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { WorkOrderContext } from '../../providers/WorkOrderProvider';
 import { InputGroup, InputGroupAddon, Input, Button, FormGroup, Label, Col, Spinner } from 'reactstrap';
 
-const WorkOrderCommentNew = ({ workOrderId }) => {
+const WorkOrderCommentNew = ({ workOrderId, getComments }) => {
   const { addWorkOrderComment } = useContext(WorkOrderContext);
 
   const loggedInUser = JSON.parse(sessionStorage.userProfile);
@@ -45,6 +45,7 @@ const WorkOrderCommentNew = ({ workOrderId }) => {
         setImageLocation("");
         document.getElementById('content').value = "";
         document.getElementById('imageLocation').value = "";
+        getComments();
       })
     }
   }
