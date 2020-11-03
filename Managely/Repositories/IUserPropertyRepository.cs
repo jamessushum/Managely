@@ -12,5 +12,7 @@ namespace Managely.Repositories
         List<UserProperty> GetPropertyByUser(int userProfileId);
 
         void RemoveUserProperty(int propertyId, int userProfileId);
+
+        void Update(UserProperty userProperty);
     }
 }

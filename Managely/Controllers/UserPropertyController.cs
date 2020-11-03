@@ -89,5 +89,18 @@ namespace Managely.Controllers
 
             return Ok(userProperties);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, UserProperty userProperty)
+        {
+            if (id != userProperty.Id)
+            {
+                return BadRequest();
+            }
+
+            _userPropertyRepository.Update(userProperty);
+
+            return NoContent();
+        }
     }
 }
