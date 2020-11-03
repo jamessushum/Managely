@@ -72,21 +72,6 @@ namespace Managely.Controllers
             }
 
             return NoContent();
-
-
-/*            if (selectedPropertyIds != null)
-            {
-                foreach (int propertyId in selectedPropertyIds)
-                {
-                    _userPropertyRepository.AddUserProperty(new UserProperty()
-                    {
-                        UserProfileId = userProfileId,
-                        PropertyId = propertyId
-                    });
-                }
-            }
-
-            return NoContent();*/
         }
 
         [HttpGet("{propertyId}")]
@@ -101,11 +86,6 @@ namespace Managely.Controllers
         public IActionResult GetPropertyByUser(string user, int userProfileId)
         {
             var userProperties = _userPropertyRepository.GetPropertyByUser(userProfileId);
-
-/*            if (userProperties.Count == 0)
-            {
-                return NotFound();
-            }*/
 
             return Ok(userProperties);
         }

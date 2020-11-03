@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { SettingsContext } from '../../providers/SettingsProvider';
+import { useHistory } from 'react-router-dom';
 import { Card, Button, CardHeader, CardBody, FormGroup, Label, Input } from 'reactstrap';
 import './SettingsTenant.css';
 
 const SettingsTenant = () => {
-  const { getAllProperties, getPropertyByUser } = useContext(SettingsContext);
+  const { getAllProperties, getPropertyByUser, addUserProperty } = useContext(SettingsContext);
+
+  const history = useHistory();
 
   const loggedInUser = JSON.parse(sessionStorage.userProfile);
 
@@ -35,6 +38,18 @@ const SettingsTenant = () => {
     setCurrentPropertyIds(stateToChange);
   }
 
+  const handleSave = async (e) => {
+    e.preventDefault();
+
+    if (currentPropertyIds.length === 0) {
+      alert('You must be associated with at least one property');
+    } else {
+      await addUserProperty(loggedInUser.id, currentPropertyIds).then(() => {
+        history.push('/')
+      })
+    }
+  }
+
   useEffect(() => {
     getProperties();
     getCurrentUserProperties();
@@ -43,7 +58,7 @@ const SettingsTenant = () => {
   return (
     <div className="tenantProperties-container">
       <Card>
-        <CardHeader>Add or Remove Properties You're Associated With:</CardHeader>
+        <CardHeader>Add or Remove Property Associations <em>(must have at least 1 association)</em></CardHeader>
         <CardBody>
           {activeProperties.length === 0 ? <h4>Uh-oh there are no properties...</h4> : activeProperties.map(property => (
             <FormGroup check key={property.id}>
@@ -54,7 +69,7 @@ const SettingsTenant = () => {
             </FormGroup>
           ))}
         </CardBody>
-        <Button>Save</Button>
+        <Button onClick={handleSave}>Save</Button>
       </Card>
     </div>
   )
