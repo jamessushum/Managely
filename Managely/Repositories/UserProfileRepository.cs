@@ -101,5 +101,44 @@ namespace Managely.Repositories
                 }
             }
         }
+
+        public void Update(UserProfile userProfile)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE
+	                                        UserProfile
+                                        SET
+	                                        FirebaseUserId = @firebaseUserId,
+	                                        FirstName = @firstName,
+	                                        LastName = @lastName,
+	                                        Email = @email,
+	                                        Company = @company,
+	                                        ImageLocation = @imageLocation,
+	                                        CreateDateTime = @createDateTime,
+	                                        IsActive = @isActive,
+	                                        UserTypeId = @userTypeId
+                                        WHERE
+	                                        Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@firebaseUserId", userProfile.FirebaseUserId);
+                    DbUtils.AddParameter(cmd, "@firstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@lastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "@company", userProfile.Company);
+                    DbUtils.AddParameter(cmd, "@imageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@createDateTime", userProfile.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@isActive", userProfile.IsActive);
+                    DbUtils.AddParameter(cmd, "@userTypeId", userProfile.UserTypeId);
+                    DbUtils.AddParameter(cmd, "@id", userProfile.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
