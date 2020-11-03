@@ -5,6 +5,7 @@ import PropertyTenantList from './PropertyTenantList';
 import PropertyOpenWorkOrders from './PropertyOpenWorkOrders';
 import PropertyCompletedWorkOrders from './PropertyCompletedWorkOrders';
 import Pagination from '../../components/Pagination/Pagination';
+import PropertyInfoEditModal from './PropertyInfoEditModal';
 import './PropertyDetails.css';
 import { Table } from 'reactstrap';
 
@@ -100,10 +101,19 @@ const PropertyDetails = ({ ...props }) => {
   // Change page - for completed work orders list pagination
   const paginateCompletedWO = (pageNumber) => setCurrentPageCompletedWO(pageNumber);
 
+  // Property edit modal components ----- Below -----
+
+  const [editModal, setEditModal] = useState(false);
+
+  const editToggle = () => {
+    setEditModal(!editModal);
+  }
+
   return (
     <div className="propertyDetails-main-container">
       <div className="propertyDetails-info">
-        <PropertyInfo property={details} />
+        <PropertyInfoEditModal editModal={editModal} editToggle={editToggle} editPropertyId={propertyId} />
+        <PropertyInfo property={details} editToggle={editToggle} />
       </div>
       <div className="propertyDetails-tenants">
         <div className="propertyDetails-tenants-table">

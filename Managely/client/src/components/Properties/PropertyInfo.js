@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardText, CardImg, Button } from 'reactstrap';
+import { FaCog } from 'react-icons/fa';
 import DefaultImage from './Img/default-property-image.jpg'
 
-const PropertyInfo = ({ property }) => {
+const PropertyInfo = ({ property, editToggle }) => {
 
   return (
     <div className="propertyInfo-container">
@@ -18,8 +19,7 @@ const PropertyInfo = ({ property }) => {
             <CardText>{property.address}</CardText>
             <CardTitle className="font-weight-bold">Property Type</CardTitle>
             <CardText>{property.type}</CardText>
-            <Button size="sm" className="mr-2">Edit</Button>
-            <Button size="sm" color="danger">Delete</Button>
+            <Button outline color="secondary" onClick={() => editToggle()}><FaCog /></Button>
           </CardBody>
         </div>
       </Card>
