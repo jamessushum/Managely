@@ -10,5 +10,7 @@ namespace Managely.Repositories
         public Property GetPropertyById(int propertyId);
 
         void Add(Property property);
+
+        void Update(Property property);
     }
 }
