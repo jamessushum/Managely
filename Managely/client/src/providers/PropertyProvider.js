@@ -8,6 +8,7 @@ export function PropertyProvider(props) {
   const userPropertyApiUrl = '/api/userproperty';
   const workOrderApiUrl = '/api/workorder';
   const propertyTypeApiUrl = '/api/propertytype';
+  const userProfileApiUrl = '/api/userprofile';
 
   const { getToken } = useContext(UserProfileContext);
 
@@ -106,8 +107,30 @@ export function PropertyProvider(props) {
     return res;
   }
 
+  // const getUserProfile = (firebaseUserId) => {
+  //   return getToken().then((token) =>
+  //     fetch(`${userProfileApiUrl}/${firebaseUserId}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     }).then(resp => resp.json()));
+  // };
+
+  const getUserProfile = async (firebaseUserId) => {
+    const token = await getToken();
+    const res = await fetch(`${userProfileApiUrl}/${firebaseUserId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
   return (
-    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders, addNewProperty, getPropertyTypes, updateProperty }}>
+    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders, addNewProperty, getPropertyTypes, updateProperty, getUserProfile }}>
       {props.children}
     </PropertyContext.Provider>
   )

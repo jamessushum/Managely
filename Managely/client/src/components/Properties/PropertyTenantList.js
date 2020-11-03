@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaEye } from "react-icons/fa";
+import { Button } from 'reactstrap';
 
-const PropertyTenantList = ({ tenants }) => {
+const PropertyTenantList = ({ tenants, tenantToEdit }) => {
 
   return (
     <>
@@ -10,7 +11,7 @@ const PropertyTenantList = ({ tenants }) => {
           <td>{tenant.userProfile.fullName}</td>
           <td>{tenant.userProfile.email}</td>
           {tenant.propertyUnitNumber === null ? <td>Not yet assigned</td> : <td>{tenant.propertyUnitNumber}</td>}
-          <td><FaEye /></td>
+          <td><Button outline color="secondary" onClick={() => tenantToEdit(tenant)}><FaEye /></Button></td>
         </tr>
       ))}
     </>

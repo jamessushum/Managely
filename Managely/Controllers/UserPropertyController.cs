@@ -85,9 +85,14 @@ namespace Managely.Controllers
         [HttpGet("{user}/{userProfileId}")]
         public IActionResult GetPropertyByUser(string user, int userProfileId)
         {
-            var userProperties = _userPropertyRepository.GetPropertyByUser(userProfileId);
+            if (user == "user")
+            {
+                var userProperties = _userPropertyRepository.GetPropertyByUser(userProfileId);
 
-            return Ok(userProperties);
+                return Ok(userProperties);
+            }
+
+            return NotFound();
         }
 
         [HttpPut("{id}")]
@@ -101,6 +106,19 @@ namespace Managely.Controllers
             _userPropertyRepository.Update(userProperty);
 
             return NoContent();
+        }
+
+        [HttpGet("{tenant}/{userProfileId}/{propertyId}")]
+        public IActionResult GetByUserProfileAndPropertyId(string tenant, int userProfileId, int propertyId)
+        {
+            if (tenant == "tenant")
+            {
+                var userProperty = _userPropertyRepository.GetByUserProfileAndPropertyId(userProfileId, propertyId);
+
+                return Ok(userProperty);
+            }
+
+            return NotFound();
         }
     }
 }
