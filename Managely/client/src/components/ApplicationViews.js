@@ -11,6 +11,8 @@ import PropertyList from './Properties/PropertyList';
 import PropertyDetails from './Properties/PropertyDetails';
 import WorkOrderDetails from './WorkOrder/WorkOrderDetails';
 import WorkOrderAddForm from '../components/WorkOrder/WorkOrderAddForm';
+import SettingsTenant from './Settings/SettingsTenant';
+import { SettingsProvider } from '../providers/SettingsProvider';
 
 const ApplicationViews = () => {
   const propertyManagerViews = [
@@ -64,6 +66,13 @@ const ApplicationViews = () => {
       provider: WorkOrderProvider,
       component: withRouter(WorkOrderDetails),
       path: "/workorder/details/:id",
+      to: "/login"
+    },
+    {
+      name: "Tenant Settings",
+      provider: SettingsProvider,
+      component: withRouter(SettingsTenant),
+      path: "/settings",
       to: "/login"
     }
   ];

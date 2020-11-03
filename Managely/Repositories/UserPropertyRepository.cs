@@ -22,12 +22,13 @@ namespace Managely.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO
-	                                        UserProperty (UserProfileId, PropertyId)
+	                                        UserProperty (UserProfileId, PropertyId, PropertyUnitNumber)
                                         OUTPUT INSERTED.Id
-                                        VALUES (@UserProfileId, @PropertyId)";
+                                        VALUES (@UserProfileId, @PropertyId, @PropertyUnitNumber)";
 
                     DbUtils.AddParameter(cmd, "@UserProfileId", userProperty.UserProfileId);
                     DbUtils.AddParameter(cmd, "@PropertyId", userProperty.PropertyId);
+                    DbUtils.AddParameter(cmd, "@PropertyUnitNumber", userProperty.PropertyUnitNumber);
 
                     userProperty.Id = (int)cmd.ExecuteScalar();
                 }
@@ -192,6 +193,27 @@ namespace Managely.Repositories
                     reader.Close();
 
                     return userProperties;
+                }
+            }
+        }
+
+        public void RemoveUserProperty(int propertyId, int userProfileId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM
+	                                        UserProperty
+                                        WHERE
+	                                        PropertyId = @propertyId AND UserProfileId = @userProfileId";
+
+                    DbUtils.AddParameter(cmd, "@propertyId", propertyId);
+                    DbUtils.AddParameter(cmd, "@userProfileId", userProfileId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
