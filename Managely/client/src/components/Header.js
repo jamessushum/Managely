@@ -20,7 +20,7 @@ const Header = () => {
     <header>
       <Navbar color="secondary" dark expand="lg">
         <NavbarBrand tag={RRNavLink} to="/">Managely</NavbarBrand>
-        <NavbarToggler className="font-weight-bold bg-primary text-white rounded" onClick={toggle} />
+        <NavbarToggler className="font-weight-bold bg-secondary text-white rounded" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             {isLoggedIn &&
@@ -35,12 +35,12 @@ const Header = () => {
                 <NavItem className="mx-0 mx-lg-1">
                   <NavLink tag={RRNavLink} to="/properties">Properties</NavLink>
                 </NavItem>
-                <NavItem className="mx-0 mx-lg-1">
+                {/* <NavItem className="mx-0 mx-lg-1">
                   <NavLink tag={RRNavLink} to="">Work Orders</NavLink>
-                </NavItem>
-                <NavItem className="mx-0 mx-lg-1">
+                </NavItem> */}
+                {/* <NavItem className="mx-0 mx-lg-1">
                   <NavLink tag={RRNavLink} to="">Settings</NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem className="mx-0 mx-lg-1">
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>

@@ -13,6 +13,7 @@ import WorkOrderDetails from './WorkOrder/WorkOrderDetails';
 import WorkOrderAddForm from '../components/WorkOrder/WorkOrderAddForm';
 import SettingsTenant from './Settings/SettingsTenant';
 import { SettingsProvider } from '../providers/SettingsProvider';
+import NotFound from './NotFound';
 
 const ApplicationViews = () => {
   const propertyManagerViews = [
@@ -111,6 +112,8 @@ const ApplicationViews = () => {
         </Route>
 
         {routes}
+
+        <Route component={NotFound} />
       </Switch>
     </main>
   )
