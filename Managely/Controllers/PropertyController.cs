@@ -49,5 +49,19 @@ namespace Managely.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = property.Id }, property);
         }
+
+        [Authorize]
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Property property)
+        {
+            if (id != property.Id)
+            {
+                return BadRequest();
+            }
+
+            _propertyRepository.Update(property);
+
+            return NoContent();
+        }
     }
 }

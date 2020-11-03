@@ -142,5 +142,36 @@ namespace Managely.Repositories
                 }
             }
         }
+
+        public void Update(Property property)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE
+	                                        Property
+                                        SET
+	                                        Name = @name,
+	                                        Address = @address,
+	                                        ImageLocation = @imageLocation,
+	                                        IsActive = @isActive,
+	                                        PropertyTypeId = @propertyTypeId
+                                        WHERE
+	                                        Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@name", property.Name);
+                    DbUtils.AddParameter(cmd, "@address", property.Address);
+                    DbUtils.AddParameter(cmd, "@imageLocation", property.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@isActive", property.IsActive);
+                    DbUtils.AddParameter(cmd, "@propertyTypeId", property.PropertyTypeId);
+                    DbUtils.AddParameter(cmd, "@id", property.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
