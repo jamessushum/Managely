@@ -112,7 +112,7 @@ const PropertyDetails = ({ ...props }) => {
   return (
     <div className="propertyDetails-main-container">
       <div className="propertyDetails-info">
-        <PropertyInfoEditModal editModal={editModal} editToggle={editToggle} editPropertyId={propertyId} />
+        <PropertyInfoEditModal editModal={editModal} editToggle={editToggle} editPropertyId={propertyId} propertyDetails={propertyDetails} />
         <PropertyInfo property={details} editToggle={editToggle} />
       </div>
       <div className="propertyDetails-tenants">

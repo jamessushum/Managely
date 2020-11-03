@@ -2,14 +2,16 @@ import React, { useContext, useState, useEffect } from 'react';
 import { PropertyContext } from '../../providers/PropertyProvider';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, } from 'reactstrap';
 
-const PropertyInfoEditModal = ({ editModal, editToggle, editPropertyId }) => {
-  const { getPropertyDetails, getPropertyTypes } = useContext(PropertyContext);
+const PropertyInfoEditModal = ({ editModal, editToggle, editPropertyId, propertyDetails }) => {
+  const { getPropertyDetails, getPropertyTypes, updateProperty } = useContext(PropertyContext);
 
   const [property, setProperty] = useState({
     id: "",
     name: "",
     address: "",
     propertyTypeId: "",
+    imageLocation: "",
+    isActive: ""
   });
 
   const [propertyTypes, setPropertyTypes] = useState([]);
@@ -20,7 +22,9 @@ const PropertyInfoEditModal = ({ editModal, editToggle, editPropertyId }) => {
       id: res.id,
       name: res.name,
       address: res.address,
-      propertyTypeId: res.propertyTypeId
+      propertyTypeId: res.propertyTypeId,
+      imageLocation: res.imageLocation,
+      isActive: res.isActive
     })
   }
 
@@ -33,6 +37,28 @@ const PropertyInfoEditModal = ({ editModal, editToggle, editPropertyId }) => {
     const stateToChange = { ...property };
     stateToChange[e.target.id] = e.target.value;
     setProperty(stateToChange);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const updatedProperty = {
+      id: property.id,
+      name: property.name,
+      address: property.address,
+      propertyTypeId: parseInt(property.propertyTypeId),
+      imageLocation: property.imageLocation,
+      isActive: property.isActive
+    }
+
+    if (property.name === "" || property.address === "" || property.propertyTypeId === "") {
+      alert('Please fill out all input fields')
+    } else {
+      updateProperty(updatedProperty).then(() => {
+        editToggle();
+        propertyDetails();
+      })
+    }
   }
 
   useEffect(() => {
@@ -61,7 +87,7 @@ const PropertyInfoEditModal = ({ editModal, editToggle, editPropertyId }) => {
           </FormGroup>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={editToggle}>Save</Button>{' '}
+          <Button color="primary" onClick={handleSubmit}>Save</Button>{' '}
           <Button color="secondary" onClick={editToggle}>Cancel</Button>
         </ModalFooter>
       </Modal>

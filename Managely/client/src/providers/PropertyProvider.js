@@ -93,8 +93,21 @@ export function PropertyProvider(props) {
     return val;
   }
 
+  const updateProperty = async (property) => {
+    const token = await getToken();
+    const res = await fetch(`${propertyApiUrl}/${property.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(property)
+    });
+    return res;
+  }
+
   return (
-    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders, addNewProperty, getPropertyTypes }}>
+    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders, addNewProperty, getPropertyTypes, updateProperty }}>
       {props.children}
     </PropertyContext.Provider>
   )
