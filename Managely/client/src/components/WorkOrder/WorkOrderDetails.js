@@ -7,10 +7,12 @@ import WorkOrderCommentsList from '../WorkOrderComment/WorkOrderCommentsList';
 import WorkOrderProgressBar from './WorkOrderProgressBar';
 import WorkOrderDeleteModal from './WorkOrderDeleteModal';
 import './WorkOrderDetails.css';
-
+import { useHistory } from 'react-router-dom';
 
 const WorkOrderDetails = ({ ...props }) => {
   const workOrderId = props.match.params.id;
+
+  const history = useHistory();
 
   const { getWorkOrderById, getWorkOrderComments } = useContext(WorkOrderContext);
 
@@ -53,20 +55,24 @@ const WorkOrderDetails = ({ ...props }) => {
   const [workOrderComments, setWorkOrderComments] = useState([]);
 
   const getWorkOrder = async () => {
-    const res = await getWorkOrderById(workOrderId);
-    setWorkOrderInfo({
-      id: res.id,
-      subject: res.subject,
-      description: res.description,
-      createDateTime: res.createDateTime,
-      severity: res.severity.type,
-      status: res.status.type,
-      userFullName: res.userProfile.fullName,
-      userCompany: res.userProfile.company,
-      propertyName: res.property.name,
-      imageLocation: res.imageLocation,
-      propertyId: res.propertyId
-    });
+    try {
+      const res = await getWorkOrderById(workOrderId);
+      setWorkOrderInfo({
+        id: res.id,
+        subject: res.subject,
+        description: res.description,
+        createDateTime: res.createDateTime,
+        severity: res.severity.type,
+        status: res.status.type,
+        userFullName: res.userProfile.fullName,
+        userCompany: res.userProfile.company,
+        propertyName: res.property.name,
+        imageLocation: res.imageLocation,
+        propertyId: res.propertyId
+      });
+    } catch (e) {
+      history.push('/404')
+    }
   }
 
   const getComments = async () => {
