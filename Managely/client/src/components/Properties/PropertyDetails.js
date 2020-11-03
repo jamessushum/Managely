@@ -8,9 +8,12 @@ import Pagination from '../../components/Pagination/Pagination';
 import PropertyInfoEditModal from './PropertyInfoEditModal';
 import './PropertyDetails.css';
 import { Table } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 
 const PropertyDetails = ({ ...props }) => {
   const propertyId = props.match.params.id;
+
+  const history = useHistory();
 
   const { getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders } = useContext(PropertyContext);
 
@@ -45,14 +48,18 @@ const PropertyDetails = ({ ...props }) => {
   const [itemsPerPageCompletedWO] = useState(3);
 
   const propertyDetails = async () => {
-    const res = await getPropertyDetails(propertyId);
-    setDetails({
-      id: res.id,
-      name: res.name,
-      address: res.address,
-      imageLocation: res.imageLocation,
-      type: res.propertyType.type
-    });
+    try {
+      const res = await getPropertyDetails(propertyId);
+      setDetails({
+        id: res.id,
+        name: res.name,
+        address: res.address,
+        imageLocation: res.imageLocation,
+        type: res.propertyType.type
+      });
+    } catch (e) {
+      history.push('/404');
+    }
   }
 
   const getAllPropertyTenants = async () => {
