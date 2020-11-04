@@ -20,5 +20,9 @@ namespace Managely.Repositories
         List<WorkOrder> GetTenantOpenWorkOrders(int userProfileId);
 
         List<WorkOrder> GetTenantCompletedWorkOrders(int userProfileId);
+
+        List<WorkOrder> GetAllOpen();
+
+        List<WorkOrder> GetAllCompleted();
     }
 }

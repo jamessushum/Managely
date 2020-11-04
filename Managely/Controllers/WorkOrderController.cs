@@ -111,6 +111,20 @@ namespace Managely.Controllers
                 return Ok(tenantClosedWorkOrders);
             }
 
+            if (user == "propertymanager" && status == "open")
+            {
+                var allOpenWorkOrders = _workOrderRepository.GetAllOpen();
+
+                return Ok(allOpenWorkOrders);
+            }
+
+            if (user == "propertymanager" && status == "closed")
+            {
+                var allClosedWorkOrders = _workOrderRepository.GetAllCompleted();
+
+                return Ok(allClosedWorkOrders);
+            }
+
             return NotFound();
         }
 
