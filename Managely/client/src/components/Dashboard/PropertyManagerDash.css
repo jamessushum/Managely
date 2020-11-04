@@ -1,0 +1,20 @@
+.propertyManagerDash-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.propertyManagerDash-banner {
+  grid-column: 1 /3;
+  height: 10vh;
+  border: 1px solid red;
+}
+
+.propertyManagerDash-openWO {
+  height: 90vh;
+  border: 1px solid blue;
+}
+
+.propertyManagerDash-closedWO {
+  height: 90vh;
+  border: 1px solid green;
+}
