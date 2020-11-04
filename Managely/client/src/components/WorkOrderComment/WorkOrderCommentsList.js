@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, CardText } from 'reactstrap';
 import { FaUserAlt, FaClock } from "react-icons/fa";
+import moment from 'moment';
 
 const WorkOrderCommentsList = ({ workOrderComments }) => {
 
@@ -8,7 +9,7 @@ const WorkOrderCommentsList = ({ workOrderComments }) => {
     <div>
       {workOrderComments.length === 0 ? <h4>No comments currently...</h4> : workOrderComments.map(comment => (
         <Card key={comment.id} className="workOrderComment-card">
-          <CardHeader><FaUserAlt /> &nbsp;{comment.userProfile.fullName} &nbsp;<FaClock /> &nbsp;{comment.createDateTime}</CardHeader>
+          <CardHeader><FaUserAlt /> &nbsp;{comment.userProfile.fullName} &nbsp;<FaClock /> &nbsp;{moment.utc(comment.createDateTime).local().fromNow()}</CardHeader>
           <CardBody>
             <CardText>{comment.content}</CardText>
             <div>
