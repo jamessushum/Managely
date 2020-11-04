@@ -19,7 +19,7 @@ const ApplicationViews = () => {
   const propertyManagerViews = [
     {
       name: "Dashboard",
-      provider: PropertyProvider,
+      provider: WorkOrderProvider,
       component: withRouter(PropertyManagerDash),
       path: "/",
       to: "/login"
