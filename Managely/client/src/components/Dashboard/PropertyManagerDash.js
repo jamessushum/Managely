@@ -6,6 +6,7 @@ import Pagination from '../Pagination/Pagination';
 import './PropertyManagerDash.css';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Table } from 'reactstrap';
 import classnames from 'classnames';
+import { FaCircleNotch, FaCircle } from "react-icons/fa";
 
 const PropertyManagerDash = () => {
   const loggedInUser = JSON.parse(sessionStorage.userProfile);
@@ -73,7 +74,7 @@ const PropertyManagerDash = () => {
               className={classnames({ active: activeTab === '1' })}
               onClick={() => { toggle('1'); }}
             >
-              <span>All Open Work Orders <span role="img" aria-label="building">🏢</span></span>
+              <span>All Open Work Orders</span>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -81,7 +82,7 @@ const PropertyManagerDash = () => {
               className={classnames({ active: activeTab === '2' })}
               onClick={() => { toggle('2'); }}
             >
-              <span>All Closed Work Orders <span role="img" aria-label="business">💼</span></span>
+              <span>All Closed Work Orders</span>
             </NavLink>
           </NavItem>
         </Nav>
