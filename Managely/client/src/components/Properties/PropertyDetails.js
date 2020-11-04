@@ -135,7 +135,7 @@ const PropertyDetails = ({ ...props }) => {
         <PropertyInfo property={details} editToggle={editToggle} />
       </div>
       <div className="propertyDetails-tenants">
-        <PropertyTenantEditModal tenantEditModal={tenantEditModal} tenantEditToggle={tenantEditToggle} tenantToEditFirebaseId={tenantToEditFirebaseId} />
+        <PropertyTenantEditModal tenantEditModal={tenantEditModal} tenantEditToggle={tenantEditToggle} tenantToEditFirebaseId={tenantToEditFirebaseId} propertyId={propertyId} getAllPropertyTenants={getAllPropertyTenants} />
         <div className="propertyDetails-tenants-table">
           <h4>Property Tenants</h4>
           <Table>
