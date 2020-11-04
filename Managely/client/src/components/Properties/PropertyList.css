@@ -1,5 +1,6 @@
 .propertyList-table {
   padding: 1.5rem;
+  overflow: auto;
 }
 
 .propertyList-btn-container {

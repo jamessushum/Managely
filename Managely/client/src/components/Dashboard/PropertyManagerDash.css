@@ -1,0 +1,25 @@
+.propertyManagerDash-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.propertyManagerDash-banner {
+  /* height: 10vh; */
+  /* border: 1px solid red; */
+  padding: 0.8rem;
+}
+
+.propertyManagerDash-WO {
+  /* height: 90vh; */
+  /* border: 1px solid blue; */
+  margin-top: 1rem;
+  overflow: auto;
+}
+
+.propertyManagerDash-openWO-table {
+  padding: 1.5rem;
+}
+
+.propertyManagerDash-closedWO-table {
+  padding: 1.5rem;
+}
