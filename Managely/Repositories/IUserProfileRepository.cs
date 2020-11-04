@@ -7,5 +7,7 @@ namespace Managely.Repositories
         UserProfile GetByFirebaseUserId(string firebaseUserId);
 
         public void Add(UserProfile userProfile);
+
+        void Update(UserProfile userProfile);
     }
 }

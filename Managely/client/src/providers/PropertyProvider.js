@@ -8,6 +8,7 @@ export function PropertyProvider(props) {
   const userPropertyApiUrl = '/api/userproperty';
   const workOrderApiUrl = '/api/workorder';
   const propertyTypeApiUrl = '/api/propertytype';
+  const userProfileApiUrl = '/api/userprofile';
 
   const { getToken } = useContext(UserProfileContext);
 
@@ -106,8 +107,58 @@ export function PropertyProvider(props) {
     return res;
   }
 
+  const getUserProfile = async (firebaseUserId) => {
+    const token = await getToken();
+    const res = await fetch(`${userProfileApiUrl}/${firebaseUserId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
+  const getTenantPropertyUnit = async (userProfileId, propertyId) => {
+    const token = await getToken();
+    const res = await fetch(`${userPropertyApiUrl}/tenant/${userProfileId}/${propertyId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const val = await res.json();
+    return val;
+  }
+
+  const updateUserProfile = async (userProfile) => {
+    const token = await getToken();
+    const res = await fetch(`${userProfileApiUrl}/${userProfile.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userProfile)
+    });
+    return res;
+  }
+
+  const updateUserProperty = async (userProperty) => {
+    const token = await getToken();
+    const res = await fetch(`${userPropertyApiUrl}/${userProperty.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userProperty)
+    });
+    return res;
+  }
+
   return (
-    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders, addNewProperty, getPropertyTypes, updateProperty }}>
+    <PropertyContext.Provider value={{ getAllProperties, getPropertyDetails, getPropertyTenants, getPropertyOpenWorkOrders, getPropertyCompletedWorkOrders, addNewProperty, getPropertyTypes, updateProperty, getUserProfile, getTenantPropertyUnit, updateUserProfile, updateUserProperty }}>
       {props.children}
     </PropertyContext.Provider>
   )

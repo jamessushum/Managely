@@ -6,6 +6,7 @@ import PropertyOpenWorkOrders from './PropertyOpenWorkOrders';
 import PropertyCompletedWorkOrders from './PropertyCompletedWorkOrders';
 import Pagination from '../../components/Pagination/Pagination';
 import PropertyInfoEditModal from './PropertyInfoEditModal';
+import PropertyTenantEditModal from './PropertyTenantEditModal';
 import './PropertyDetails.css';
 import { Table } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
@@ -116,6 +117,17 @@ const PropertyDetails = ({ ...props }) => {
     setEditModal(!editModal);
   }
 
+  const [tenantEditModal, setTenantEditModal] = useState(false);
+
+  const [tenantToEditFirebaseId, setTenantToEditFirebaseId] = useState("");
+
+  const tenantEditToggle = () => setTenantEditModal(!tenantEditModal);
+
+  const tenantToEdit = (tenant) => {
+    setTenantToEditFirebaseId(tenant.userProfile.firebaseUserId);
+    tenantEditToggle();
+  }
+
   return (
     <div className="propertyDetails-main-container">
       <div className="propertyDetails-info">
@@ -123,6 +135,7 @@ const PropertyDetails = ({ ...props }) => {
         <PropertyInfo property={details} editToggle={editToggle} />
       </div>
       <div className="propertyDetails-tenants">
+        <PropertyTenantEditModal tenantEditModal={tenantEditModal} tenantEditToggle={tenantEditToggle} tenantToEditFirebaseId={tenantToEditFirebaseId} propertyId={propertyId} getAllPropertyTenants={getAllPropertyTenants} />
         <div className="propertyDetails-tenants-table">
           <h4>Property Tenants</h4>
           <Table>
@@ -135,7 +148,7 @@ const PropertyDetails = ({ ...props }) => {
               </tr>
             </thead>
             <tbody>
-              <PropertyTenantList tenants={currentTenants} />
+              <PropertyTenantList tenants={currentTenants} tenantToEdit={tenantToEdit} />
             </tbody>
           </Table>
           <Pagination itemsPerPage={itemsPerPage} totalItems={propertyTenants.length} paginate={paginate} />
