@@ -4,6 +4,7 @@ import { PropertyContext } from '../../providers/PropertyProvider';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import './Register.css';
+import moment from 'moment';
 
 const Register = () => {
   const history = useHistory();
@@ -82,7 +83,7 @@ const Register = () => {
       lastName: userProfile.LastName,
       email: userProfile.Email,
       company: userProfile.Company,
-      createDateTime: new Date(),
+      createDateTime: moment(),
       isActive: true,
       userTypeId: parseInt(userProfile.UserTypeId),
       imageLocation: imageLocation
@@ -90,19 +91,19 @@ const Register = () => {
 
     if (password && password !== confirmPassword) {
       alert("Passwords don't match.");
-    } else if (userProfile.FirstName === "" || userProfile.LastName === "" || userProfile.Email === "" || password === "" || confirmPassword === "" || selectedPropertyIds.length === 0) {
+    } else if (userProfile.FirstName === "" || userProfile.LastName === "" || userProfile.Email === "" || password === "" || confirmPassword === "" || (userProfile.UserTypeId === "2" ? selectedPropertyIds.length === 0 : null)) {
       alert("Please fill out all required fields.");
     } else {
       if (userProfile.UserTypeId === "2") {
         register(newUserProfile, password).then(() => {
           const userProfileId = JSON.parse(sessionStorage.getItem('userProfile')).id;
           createUserProperty(userProfileId, selectedPropertyIds).then(() => {
-            history.push('/');
+            history.push('/login');
           })
         })
       } else if (userProfile.UserTypeId === "1") {
         register(newUserProfile, password).then(() => {
-          history.push('/');
+          history.push('/login');
         })
       }
     }

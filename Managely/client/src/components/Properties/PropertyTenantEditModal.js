@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PropertyContext } from '../../providers/PropertyProvider';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
+import moment from 'moment';
 
 const PropertyTenantEditModal = ({ tenantEditModal, tenantEditToggle, tenantToEditFirebaseId, propertyId, getAllPropertyTenants }) => {
   const { getUserProfile, getTenantPropertyUnit, updateUserProfile, updateUserProperty } = useContext(PropertyContext);
@@ -130,7 +131,7 @@ const PropertyTenantEditModal = ({ tenantEditModal, tenantEditToggle, tenantToEd
           </FormGroup>
           <FormGroup>
             <Label for="createDateTime">Date Joined</Label>
-            <Input id="createDateTime" readOnly value={tenant.createDateTime} />
+            <Input id="createDateTime" readOnly value={moment.utc(tenant.createDateTime).local().format("LL")} />
           </FormGroup>
           <FormGroup>
             <Label for="propertyUnitNumber">Unit #</Label>
