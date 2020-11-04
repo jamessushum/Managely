@@ -3,6 +3,7 @@ import { WorkOrderContext } from '../../providers/WorkOrderProvider';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import './WorkOrderAddForm.css'
+import moment from 'moment';
 
 const WorkOrderAddForm = () => {
   const history = useHistory();
@@ -69,7 +70,7 @@ const WorkOrderAddForm = () => {
     const workOrder = {
       subject: newWorkOrder.subject,
       description: newWorkOrder.description,
-      createDateTime: new Date(),
+      createDateTime: moment(),
       imageLocation: imageLocation,
       severityId: parseInt(newWorkOrder.severityId),
       statusId: 1,

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { WorkOrderContext } from '../../providers/WorkOrderProvider';
 import { InputGroup, InputGroupAddon, Input, Button, FormGroup, Label, Col, Spinner } from 'reactstrap';
+import moment from 'moment';
 
 const WorkOrderCommentNew = ({ workOrderId, getComments }) => {
   const { addWorkOrderComment } = useContext(WorkOrderContext);
@@ -32,7 +33,7 @@ const WorkOrderCommentNew = ({ workOrderId, getComments }) => {
     const newWorkOrderComment = {
       content: content,
       imageLocation: imageLocation,
-      createDateTime: new Date(),
+      createDateTime: moment(),
       userProfileId: loggedInUser.id,
       workOrderId: parseInt(workOrderId)
     }
