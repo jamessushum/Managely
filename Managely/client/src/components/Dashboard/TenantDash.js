@@ -62,15 +62,15 @@ const TenantDash = () => {
   return (
     <div className="tenantDash-container">
       <div className="tenantDash-banner">
-        <div className="tenantDash-banner-name"><h4>Welcome, {loggedInUser.fullName}!</h4></div>
+        <div className="tenantDash-banner-name"><h4>Welcome, {loggedInUser.fullName} 🍣</h4></div>
         <div className="tenantDash-banner-addBtn">
-          <Button color="success" onClick={() => history.push('/workorder/new')}>Create New Work Order</Button>
+          <Button color="secondary" onClick={() => history.push('/workorder/new')}>Create New Work Order</Button>
         </div>
       </div>
       <div className="tenantDash-openWO">
         <div className="tenantDash-openWO-table">
-          <h4>Open Work Orders</h4>
-          <Table>
+          <h4>Your Open Work Orders</h4>
+          <Table striped>
             <thead>
               <tr>
                 <th>Subject</th>
@@ -91,8 +91,8 @@ const TenantDash = () => {
       </div>
       <div className="tenantDash-closedWO">
         <div className="tenantDash-closedWO-table">
-          <h4>Completed Work Orders</h4>
-          <Table>
+          <h4>Your Completed Work Orders</h4>
+          <Table striped>
             <thead>
               <tr>
                 <th>Subject</th>

@@ -95,8 +95,8 @@ const WorkOrderAddForm = () => {
   return (
     <div className="newWorkOrder-container">
       <Form className="newWorkOrder-form">
-        <h4>Create a New Work Order</h4>
-        <FormGroup>
+        <h4>New Work Order</h4>
+        <FormGroup className="newWorkOrder-form-subject">
           <Label for="subject">Subject <small>(required)</small></Label>
           <Input type="text" id="subject" onChange={handleFieldChange} />
         </FormGroup>
@@ -124,8 +124,8 @@ const WorkOrderAddForm = () => {
           {isImageLoading ? <Spinner size="sm" color="warning" /> : null}
         </FormGroup>
         <div className="newWorkOrder-btn-container">
-          <Button color="success" onClick={handleFormSubmit}>Create</Button>
-          <Button onClick={() => history.push('/')}>Cancel</Button>
+          <Button color="warning" block onClick={handleFormSubmit}>Create</Button>
+          <Button block onClick={() => history.push('/')}>Cancel</Button>
         </div>
       </Form>
     </div>
