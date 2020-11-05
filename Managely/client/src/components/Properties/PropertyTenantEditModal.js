@@ -139,7 +139,7 @@ const PropertyTenantEditModal = ({ tenantEditModal, tenantEditToggle, tenantToEd
           </FormGroup>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleSubmit}>Save Changes</Button>{' '}
+          <Button color="warning" onClick={handleSubmit}>Save Changes</Button>{' '}
           <Button color="secondary" onClick={tenantEditToggle}>Cancel</Button>
         </ModalFooter>
       </Modal>

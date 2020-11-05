@@ -1,16 +1,24 @@
 .register-container {
   display: flex;
   justify-content: center;
+  padding: 3rem;
 }
 
 .register-form {
   border: 1px solid lightgray;
   border-radius: 5px;
-  margin-top: 3em;
   width: 550px;
   padding: 1.5em;
 }
 
 .register-submitBtn {
-  margin-top: 2.5em;
+  margin-top: 1.5em;
+}
+
+.login-form-loginLink {
+  margin-top: 1rem;
+}
+
+.register-form-userType {
+  margin-top: 1rem;
 }

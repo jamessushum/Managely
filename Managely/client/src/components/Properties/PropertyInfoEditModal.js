@@ -87,7 +87,7 @@ const PropertyInfoEditModal = ({ editModal, editToggle, editPropertyId, property
           </FormGroup>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleSubmit}>Save</Button>{' '}
+          <Button color="warning" onClick={handleSubmit}>Save</Button>{' '}
           <Button color="secondary" onClick={editToggle}>Cancel</Button>
         </ModalFooter>
       </Modal>

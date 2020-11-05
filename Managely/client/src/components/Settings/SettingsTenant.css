@@ -1,4 +1,5 @@
 .tenantProperties-container {
   display: flex;
-  padding: 1.5rem;
+  justify-content: center;
+  padding: 3rem;
 }

@@ -96,7 +96,7 @@ const PropertyAddModal = ({ addPropertyModal, addToggle, getActiveProperties, pr
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={handleSubmit}>Add</Button>{' '}
+          <Button color="warning" onClick={handleSubmit}>Add</Button>{' '}
           <Button color="secondary" onClick={addToggle}>Cancel</Button>
         </ModalFooter>
       </Modal>

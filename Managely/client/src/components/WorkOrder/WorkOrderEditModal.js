@@ -112,7 +112,7 @@ const WorkOrderEditModal = ({ editModal, editToggle, workOrderToEditId, formFeed
           </FormGroup>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleSubmit}>Update</Button>{' '}
+          <Button color="warning" onClick={handleSubmit}>Update</Button>{' '}
           <Button color="secondary" onClick={editToggle}>Cancel</Button>
         </ModalFooter>
       </Modal>

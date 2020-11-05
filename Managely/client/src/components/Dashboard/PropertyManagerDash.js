@@ -6,7 +6,6 @@ import Pagination from '../Pagination/Pagination';
 import './PropertyManagerDash.css';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Table } from 'reactstrap';
 import classnames from 'classnames';
-import { FaCircleNotch, FaCircle } from "react-icons/fa";
 
 const PropertyManagerDash = () => {
   const loggedInUser = JSON.parse(sessionStorage.userProfile);
@@ -65,7 +64,7 @@ const PropertyManagerDash = () => {
   return (
     <div className="propertyManagerDash-container">
       <div className="propertyManagerDash-banner">
-        <h4>Welcome, {loggedInUser.fullName} 🚀</h4>
+        <h4>Welcome, {loggedInUser.fullName} 🍱</h4>
       </div>
       <div className="propertyManagerDash-WO">
         <Nav tabs>
@@ -89,7 +88,7 @@ const PropertyManagerDash = () => {
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
             <div className="propertyManagerDash-openWO-table">
-              <Table>
+              <Table striped>
                 <thead>
                   <tr>
                     <th>Subject</th>
@@ -110,7 +109,7 @@ const PropertyManagerDash = () => {
           </TabPane>
           <TabPane tabId="2">
             <div className="propertyManagerDash-closedWO-table">
-              <Table>
+              <Table striped>
                 <thead>
                   <tr>
                     <th>Subject</th>

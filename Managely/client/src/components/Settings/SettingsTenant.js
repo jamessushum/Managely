@@ -69,7 +69,7 @@ const SettingsTenant = () => {
             </FormGroup>
           ))}
         </CardBody>
-        <Button onClick={handleSave}>Save</Button>
+        <Button color="warning" onClick={handleSave}>Save</Button>
       </Card>
     </div>
   )

@@ -10,6 +10,7 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import './Header.css'
 
 const Header = () => {
   const { isLoggedIn, logout, isPropertyManager } = useContext(UserProfileContext);
@@ -18,7 +19,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar color="secondary" dark expand="lg">
+      <Navbar className="navBar" dark expand="lg">
         <NavbarBrand tag={RRNavLink} to="/">Managely</NavbarBrand>
         <NavbarToggler className="font-weight-bold bg-secondary text-white rounded" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
