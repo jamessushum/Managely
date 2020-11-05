@@ -151,7 +151,7 @@ const PropertyDetails = ({ ...props }) => {
               <PropertyTenantList tenants={currentTenants} tenantToEdit={tenantToEdit} />
             </tbody>
           </Table>
-          <Pagination itemsPerPage={itemsPerPage} totalItems={propertyTenants.length} paginate={paginate} />
+          <Pagination itemsPerPage={itemsPerPage} totalItems={propertyTenants.length} paginate={paginate} currentPage={currentPage} />
         </div>
       </div>
       <div className="propertyDetails-outstanding last-row">
@@ -172,7 +172,7 @@ const PropertyDetails = ({ ...props }) => {
               <PropertyOpenWorkOrders workOrders={currentOpenWorkOrders} />
             </tbody>
           </Table>
-          <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} />
+          <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} currentPage={currentPageOpenWO} />
         </div>
       </div>
       <div className="propertyDetails-completed last-row">
@@ -193,7 +193,7 @@ const PropertyDetails = ({ ...props }) => {
               <PropertyCompletedWorkOrders workOrders={currentCompletedWorkOrders} />
             </tbody>
           </Table>
-          <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={completedWorkOrders.length} paginate={paginateCompletedWO} />
+          <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={completedWorkOrders.length} paginate={paginateCompletedWO} currentPage={currentPageCompletedWO} />
         </div>
       </div>
     </div>

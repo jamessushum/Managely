@@ -104,7 +104,7 @@ const PropertyManagerDash = () => {
                   <AllOpenWorkOrders workOrders={currentOpenWorkOrders} />
                 </tbody>
               </Table>
-              <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={allOpenWorkOders.length} paginate={paginateOpenWO} />
+              <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={allOpenWorkOders.length} paginate={paginateOpenWO} currentPage={currentPageOpenWO} />
             </div>
           </TabPane>
           <TabPane tabId="2">
@@ -125,7 +125,7 @@ const PropertyManagerDash = () => {
                   <AllClosedWorkOrders workOrders={currentCompletedWorkOrders} />
                 </tbody>
               </Table>
-              <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={allClosedWorkOrders.length} paginate={paginateCompletedWO} />
+              <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={allClosedWorkOrders.length} paginate={paginateCompletedWO} currentPage={currentPageCompletedWO} />
             </div>
           </TabPane>
         </TabContent>
