@@ -6,7 +6,6 @@ import Pagination from '../Pagination/Pagination';
 import './PropertyManagerDash.css';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Table } from 'reactstrap';
 import classnames from 'classnames';
-import { FaCircleNotch, FaCircle } from "react-icons/fa";
 
 const PropertyManagerDash = () => {
   const loggedInUser = JSON.parse(sessionStorage.userProfile);

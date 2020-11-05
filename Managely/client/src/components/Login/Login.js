@@ -32,7 +32,7 @@ const Login = () => {
         <div className="alert alert-danger" role="alert" hidden={invalidCredentials}>
           Invalid email or password
         </div>
-        <FormGroup>
+        <FormGroup className="login-form-email">
           <Label for="email">Email</Label>
           <Input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} />
         </FormGroup>
@@ -40,11 +40,11 @@ const Login = () => {
           <Label for="password">Password</Label>
           <Input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} />
         </FormGroup>
-        <Button onClick={loginSubmit}>Sign In</Button>
-        <div>
-          <em>
-            Not registered? <Link to="register">Register</Link>
-          </em>
+        <div className="login-form-submit">
+          <Button block onClick={loginSubmit}>Sign In</Button>
+        </div>
+        <div className="login-form-registerLink">
+          Not registered? <Link to="register">Create an account</Link>
         </div>
       </Form>
     </div>

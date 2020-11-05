@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { PropertyContext } from '../../providers/PropertyProvider';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import './Register.css';
 import moment from 'moment';
@@ -129,7 +129,7 @@ const Register = () => {
     <div className="register-container">
       <Form className="register-form">
         <h3>Register</h3>
-        <FormGroup>
+        <FormGroup className="register-form-userType">
           <Label for="UserTypeId">Are you a tenant or property manager? <small>(required)</small></Label>
           <Input type="select" id="UserTypeId" onChange={handleFieldChange}>
             {userTypes.map(type => <option key={type.id} value={type.id}>{type.type}</option>)}
@@ -167,7 +167,10 @@ const Register = () => {
         {userProfile.UserTypeId === "2" ? <h6>Select Property <small>(required)</small></h6> : null}
         {loadProperties}
         <div className="register-submitBtn">
-          <Button onClick={handleRegisterSubmit}>Create Account</Button>
+          <Button block onClick={handleRegisterSubmit}>Create Account</Button>
+        </div>
+        <div className="login-form-loginLink">
+          Already have an account? <Link to="login">Login</Link>
         </div>
       </Form>
     </div>

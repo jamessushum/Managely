@@ -1,12 +1,24 @@
 .login-container {
   display: flex;
   justify-content: center;
+  padding: 3rem;
 }
 
 .login-form {
   border: 1px solid lightgray;
   border-radius: 5px;
-  margin-top: 3em;
   width: 550px;
   padding: 1.5em;
+}
+
+.login-form-registerLink {
+  margin-top: 1rem;
+}
+
+.login-form-submit {
+  margin-top: 1.5rem;
+}
+
+.login-form-email {
+  margin-top: 1rem;
 }
