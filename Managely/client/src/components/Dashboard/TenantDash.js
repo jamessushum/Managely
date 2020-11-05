@@ -86,7 +86,7 @@ const TenantDash = () => {
               <PropertyOpenWorkOrders workOrders={currentOpenWorkOrders} />
             </tbody>
           </Table>
-          <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} />
+          <Pagination itemsPerPage={itemsPerPageOpenWO} totalItems={openWorkOrders.length} paginate={paginateOpenWO} currentPage={currentPageOpenWO} />
         </div>
       </div>
       <div className="tenantDash-closedWO">
@@ -108,7 +108,7 @@ const TenantDash = () => {
               <PropertyCompletedWorkOrders workOrders={currentCompletedWorkOrders} />
             </tbody>
           </Table>
-          <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={completedWorkOrders.length} paginate={paginateCompletedWO} />
+          <Pagination itemsPerPage={itemsPerPageCompletedWO} totalItems={completedWorkOrders.length} paginate={paginateCompletedWO} currentPage={currentPageCompletedWO} />
         </div>
       </div>
     </div>
