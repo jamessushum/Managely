@@ -138,7 +138,7 @@ const PropertyDetails = ({ ...props }) => {
         <PropertyTenantEditModal tenantEditModal={tenantEditModal} tenantEditToggle={tenantEditToggle} tenantToEditFirebaseId={tenantToEditFirebaseId} propertyId={propertyId} getAllPropertyTenants={getAllPropertyTenants} />
         <div className="propertyDetails-tenants-table">
           <h4>Property Tenants</h4>
-          <Table>
+          <Table striped>
             <thead>
               <tr>
                 <th>Name</th>
@@ -157,7 +157,7 @@ const PropertyDetails = ({ ...props }) => {
       <div className="propertyDetails-outstanding last-row">
         <div className="propertyDetails-outstanding-table">
           <h4>Open Work Orders</h4>
-          <Table>
+          <Table striped>
             <thead>
               <tr>
                 <th>Subject</th>
@@ -178,7 +178,7 @@ const PropertyDetails = ({ ...props }) => {
       <div className="propertyDetails-completed last-row">
         <div className="propertyDetails-completed-table">
           <h4>Completed Work Orders</h4>
-          <Table>
+          <Table striped>
             <thead>
               <tr>
                 <th>Subject</th>

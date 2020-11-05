@@ -55,7 +55,7 @@ const WorkOrderCommentNew = ({ workOrderId, getComments }) => {
     <div className="workOrderComment-new-container">
       <div>
         <InputGroup>
-          <Input id="content" placeholder="enter a comment" onChange={(e) => setContent(e.target.value)} />
+          <Input id="content" placeholder="Enter a comment" onChange={(e) => setContent(e.target.value)} />
           <InputGroupAddon addonType="append">
             <Button onClick={handleCommentSubmit}>Send</Button>
           </InputGroupAddon>

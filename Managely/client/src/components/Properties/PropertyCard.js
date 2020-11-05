@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import './PropertyCard.css'
 import { Button } from 'reactstrap';
 import DefaultImage from './Img/default-property-image.jpg'
+import { FaEye } from "react-icons/fa";
 
 const PropertyCard = ({ property }) => {
   const history = useHistory();
@@ -16,7 +17,7 @@ const PropertyCard = ({ property }) => {
         <td>{property.name}</td>
         <td>{property.address}</td>
         <td>{property.propertyType.type}</td>
-        <td><Button color="info" onClick={() => history.push(`/properties/details/${property.id}`)}>Details</Button></td>
+        <td><Button outline color="secondary" onClick={() => history.push(`/properties/details/${property.id}`)}><FaEye /></Button></td>
       </tr>
     </>
   )

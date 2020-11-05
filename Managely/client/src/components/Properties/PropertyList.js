@@ -47,18 +47,18 @@ const PropertyList = () => {
     <>
       <PropertyAddModal addPropertyModal={addPropertyModal} addToggle={addToggle} getActiveProperties={getActiveProperties} property={property} setProperty={setProperty} imageLocation={imageLocation} setImageLocation={setImageLocation} />
       <div className="propertyList-btn-container">
-        <Button color="success" onClick={addToggle}>Add Property</Button>
+        <Button color="secondary" onClick={addToggle}>Add Property</Button>
       </div>
       <div className="propertyList-table">
         <h4>Properties Under Management</h4>
-        <Table>
+        <Table striped>
           <thead>
             <tr>
               <th></th>
               <th>Property Name</th>
               <th>Property Address</th>
               <th>Property Type</th>
-              <th></th>
+              <th>Details</th>
             </tr>
           </thead>
           <tbody>

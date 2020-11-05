@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import moment from 'moment';
+import { FaCog, FaTrashAlt } from "react-icons/fa";
 
 const WorkOrderInfo = ({ workOrder, editToggle, deleteToggle }) => {
   const loggedInUser = JSON.parse(sessionStorage.userProfile);
@@ -9,8 +10,8 @@ const WorkOrderInfo = ({ workOrder, editToggle, deleteToggle }) => {
     <div className="card">
       <h4 className="card-header">
         Work Order Details
-        {loggedInUser.userTypeId === 2 ? null : <Button className="ml-3" size="sm" onClick={() => editToggle()}>Update</Button>}
-        {loggedInUser.userTypeId === 2 ? null : <Button className="ml-2" color="danger" size="sm" onClick={() => deleteToggle()}>Delete</Button>}
+        {loggedInUser.userTypeId === 2 ? null : <Button outline className="ml-3" size="sm" onClick={() => editToggle()}><FaCog /></Button>}
+        {loggedInUser.userTypeId === 2 ? null : <Button outline className="ml-2" color="danger" size="sm" onClick={() => deleteToggle()}><FaTrashAlt /></Button>}
       </h4>
       <div className="card-body">
         <h5 className="card-title">{workOrder.subject}</h5>
