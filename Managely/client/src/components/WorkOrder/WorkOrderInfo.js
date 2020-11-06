@@ -21,7 +21,8 @@ const WorkOrderInfo = ({ workOrder, editToggle, deleteToggle }) => {
         <p className="card-text"><b>Date Created:</b> {moment.utc(workOrder.createDateTime).local().format("LLL")}</p>
         <p className="card-text"><b>Severity:</b> {workOrder.severity}</p>
         <p className="card-text"><b>Status:</b> {workOrder.status}</p>
-        <p className="card-text"><b>Images:</b> {workOrder.imageLocation === null || workOrder.imageLocation === "" ? 'N/A' : workOrder.imageLocation}</p>
+        <p className="card-text"><b>Images:</b></p>
+        {workOrder.imageLocation === null || workOrder.imageLocation === "" ? null : <img src={workOrder.imageLocation} alt="workOrder-img" className="workOrder-img" />}
       </div>
     </div>
   )

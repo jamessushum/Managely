@@ -56,3 +56,8 @@
 .workOrderComment-card {
   margin-bottom: 1rem;
 }
+
+.workOrder-img {
+  height: 50%;
+  width: 50%;
+}
