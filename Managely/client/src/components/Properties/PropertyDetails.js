@@ -7,6 +7,7 @@ import PropertyCompletedWorkOrders from './PropertyCompletedWorkOrders';
 import Pagination from '../../components/Pagination/Pagination';
 import PropertyInfoEditModal from './PropertyInfoEditModal';
 import PropertyTenantEditModal from './PropertyTenantEditModal';
+import PropertyDeleteModal from './PropertyDeleteModal';
 import './PropertyDetails.css';
 import { Table } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
@@ -128,11 +129,16 @@ const PropertyDetails = ({ ...props }) => {
     tenantEditToggle();
   }
 
+  const [propertyDeleteModal, setPropertyDeleteModal] = useState(false);
+
+  const propertyDeleteToggle = () => setPropertyDeleteModal(!propertyDeleteModal);
+
   return (
     <div className="propertyDetails-main-container">
       <div className="propertyDetails-info">
         <PropertyInfoEditModal editModal={editModal} editToggle={editToggle} editPropertyId={propertyId} propertyDetails={propertyDetails} />
-        <PropertyInfo property={details} editToggle={editToggle} />
+        <PropertyDeleteModal propertyDeleteModal={propertyDeleteModal} propertyDeleteToggle={propertyDeleteToggle} />
+        <PropertyInfo property={details} editToggle={editToggle} propertyDeleteToggle={propertyDeleteToggle} />
       </div>
       <div className="propertyDetails-tenants">
         <PropertyTenantEditModal tenantEditModal={tenantEditModal} tenantEditToggle={tenantEditToggle} tenantToEditFirebaseId={tenantToEditFirebaseId} propertyId={propertyId} getAllPropertyTenants={getAllPropertyTenants} />
