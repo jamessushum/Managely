@@ -26,6 +26,8 @@ const PropertyDetails = ({ ...props }) => {
     address: "",
     imageLocation: "",
     type: "",
+    propertyTypeId: "",
+    isActive: ""
   });
 
   // State for property tenants component
@@ -57,7 +59,9 @@ const PropertyDetails = ({ ...props }) => {
         name: res.name,
         address: res.address,
         imageLocation: res.imageLocation,
-        type: res.propertyType.type
+        type: res.propertyType.type,
+        propertyTypeId: res.propertyTypeId,
+        isActive: res.isActive
       });
     } catch (e) {
       history.push('/404');
@@ -137,7 +141,7 @@ const PropertyDetails = ({ ...props }) => {
     <div className="propertyDetails-main-container">
       <div className="propertyDetails-info">
         <PropertyInfoEditModal editModal={editModal} editToggle={editToggle} editPropertyId={propertyId} propertyDetails={propertyDetails} />
-        <PropertyDeleteModal propertyDeleteModal={propertyDeleteModal} propertyDeleteToggle={propertyDeleteToggle} />
+        <PropertyDeleteModal propertyDeleteModal={propertyDeleteModal} propertyDeleteToggle={propertyDeleteToggle} propertyDetails={details} />
         <PropertyInfo property={details} editToggle={editToggle} propertyDeleteToggle={propertyDeleteToggle} />
       </div>
       <div className="propertyDetails-tenants">
