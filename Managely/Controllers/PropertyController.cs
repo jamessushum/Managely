@@ -38,6 +38,11 @@ namespace Managely.Controllers
                 return NotFound();
             }
 
+            if (property.IsActive == false)
+            {
+                return NotFound();
+            }
+
             return Ok(property);
         }
 
