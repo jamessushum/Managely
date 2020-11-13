@@ -20,7 +20,7 @@ const PropertyInfo = ({ property, editToggle, propertyDeleteToggle }) => {
             <CardTitle className="font-weight-bold">Property Type</CardTitle>
             <CardText>{property.type}</CardText>
             <Button outline color="secondary" onClick={() => editToggle()}><FaCog /></Button>
-            <Button outline color="danger" onClick={() => propertyDeleteToggle()}><FaTrashAlt /></Button>
+            <Button outline color="danger" className="ml-2" onClick={() => propertyDeleteToggle()}><FaTrashAlt /></Button>
           </CardBody>
         </div>
       </Card>
