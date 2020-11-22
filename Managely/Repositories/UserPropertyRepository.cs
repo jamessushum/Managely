@@ -149,7 +149,7 @@ namespace Managely.Repositories
 	                                        LEFT JOIN UserProfile u ON up.UserProfileId = u.Id
 	                                        LEFT JOIN Property p ON up.PropertyId = p.Id
                                         WHERE
-	                                        up.UserProfileId = @userProfileId";
+	                                        up.UserProfileId = @userProfileId AND p.IsActive = 1";
 
                     DbUtils.AddParameter(cmd, "@userProfileId", userProfileId);
 

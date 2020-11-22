@@ -7,6 +7,7 @@ import PropertyCompletedWorkOrders from './PropertyCompletedWorkOrders';
 import Pagination from '../../components/Pagination/Pagination';
 import PropertyInfoEditModal from './PropertyInfoEditModal';
 import PropertyTenantEditModal from './PropertyTenantEditModal';
+import PropertyDeleteModal from './PropertyDeleteModal';
 import './PropertyDetails.css';
 import { Table } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
@@ -25,6 +26,8 @@ const PropertyDetails = ({ ...props }) => {
     address: "",
     imageLocation: "",
     type: "",
+    propertyTypeId: "",
+    isActive: ""
   });
 
   // State for property tenants component
@@ -56,7 +59,9 @@ const PropertyDetails = ({ ...props }) => {
         name: res.name,
         address: res.address,
         imageLocation: res.imageLocation,
-        type: res.propertyType.type
+        type: res.propertyType.type,
+        propertyTypeId: res.propertyTypeId,
+        isActive: res.isActive
       });
     } catch (e) {
       history.push('/404');
@@ -128,11 +133,16 @@ const PropertyDetails = ({ ...props }) => {
     tenantEditToggle();
   }
 
+  const [propertyDeleteModal, setPropertyDeleteModal] = useState(false);
+
+  const propertyDeleteToggle = () => setPropertyDeleteModal(!propertyDeleteModal);
+
   return (
     <div className="propertyDetails-main-container">
       <div className="propertyDetails-info">
         <PropertyInfoEditModal editModal={editModal} editToggle={editToggle} editPropertyId={propertyId} propertyDetails={propertyDetails} />
-        <PropertyInfo property={details} editToggle={editToggle} />
+        <PropertyDeleteModal propertyDeleteModal={propertyDeleteModal} propertyDeleteToggle={propertyDeleteToggle} propertyDetails={details} />
+        <PropertyInfo property={details} editToggle={editToggle} propertyDeleteToggle={propertyDeleteToggle} />
       </div>
       <div className="propertyDetails-tenants">
         <PropertyTenantEditModal tenantEditModal={tenantEditModal} tenantEditToggle={tenantEditToggle} tenantToEditFirebaseId={tenantToEditFirebaseId} propertyId={propertyId} getAllPropertyTenants={getAllPropertyTenants} />

@@ -478,7 +478,7 @@ namespace Managely.Repositories
 	                                        LEFT JOIN UserProfile up ON w.UserProfileId = up.Id
 	                                        LEFT JOIN Property p ON w.PropertyId = p.Id
                                         WHERE
-	                                        w.StatusId != 4 AND w.UserProfileId = @userProfileId
+	                                        w.StatusId != 4 AND w.UserProfileId = @userProfileId AND p.IsActive = 1
                                         ORDER BY
 	                                        w.CreateDateTime DESC";
 
@@ -584,7 +584,7 @@ namespace Managely.Repositories
 	                                        LEFT JOIN UserProfile up ON w.UserProfileId = up.Id
 	                                        LEFT JOIN Property p ON w.PropertyId = p.Id
                                         WHERE
-	                                        w.StatusId = 4 AND w.UserProfileId = @userProfileId
+	                                        w.StatusId = 4 AND w.UserProfileId = @userProfileId AND p.IsActive = 1
                                         ORDER BY
 	                                        w.CreateDateTime DESC";
 
@@ -690,7 +690,7 @@ namespace Managely.Repositories
 	                                        LEFT JOIN UserProfile up ON w.UserProfileId = up.Id
 	                                        LEFT JOIN Property p ON w.PropertyId = p.Id
                                         WHERE
-	                                        w.StatusId != 4
+	                                        w.StatusId != 4 AND p.IsActive = 1
                                         ORDER BY
 	                                        w.CreateDateTime DESC";
 
@@ -794,7 +794,7 @@ namespace Managely.Repositories
 	                                        LEFT JOIN UserProfile up ON w.UserProfileId = up.Id
 	                                        LEFT JOIN Property p ON w.PropertyId = p.Id
                                         WHERE
-	                                        w.StatusId = 4
+	                                        w.StatusId = 4 AND p.IsActive = 1
                                         ORDER BY
 	                                        w.CreateDateTime DESC";
 
