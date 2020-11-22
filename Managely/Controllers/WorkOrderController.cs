@@ -55,6 +55,11 @@ namespace Managely.Controllers
                 return NotFound();
             }
 
+            if (workOrder.Property.IsActive == false)
+            {
+                return NotFound();
+            }
+
             return Ok(workOrder);
         }
 
